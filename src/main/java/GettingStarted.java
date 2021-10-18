@@ -7,10 +7,10 @@ import SimUtil.MAPProcess;
 
 import java.util.*;
 
-public class GettingStarted1 {
+public class GettingStarted {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        GettingStarted1.ex3();
+        GettingStarted.ex3();
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime);
