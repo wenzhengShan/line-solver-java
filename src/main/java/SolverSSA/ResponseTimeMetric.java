@@ -110,6 +110,10 @@ public class ResponseTimeMetric extends Metric<Double, Double> {
                     (de.getJobClass().getJobClassIdx() == this.classIdx)){
                 double timePassed = 0;
                 for (int i = 0; i < n; i++) {
+                    if (buffer.isEmpty()) {
+                        n -= i;
+                        break;
+                    }
                     timePassed += t-buffer.pop();
                 }
                 this.metricValue = ((this.metricValue * this.nDepartures) + (timePassed*n))/(this.nDepartures+n);
