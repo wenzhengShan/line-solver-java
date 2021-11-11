@@ -141,7 +141,6 @@ public class Timeline {
     }
 
     public void record(double t, Event e, StateMatrix stateMatrix) {
-        System.out.println(e);
         this.eventTimeline.add(e);
         this.timeList.add(t);
         this.maxTime = t;
