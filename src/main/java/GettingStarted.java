@@ -1,3 +1,4 @@
+import SimUtil.Erlang;
 import SimUtil.Exp;
 import StochLib.ClassSwitch;
 import SolverSSA.*;
@@ -30,19 +31,17 @@ public class GettingStarted {
         JobClass oclass = new OpenClass(model, "Machines");
         source.setArrivalDistribution(oclass, new Exp(0.2));
         delay.setService(oclass, new Exp(1.0));
-        queue.setService(oclass, new Exp(4.0));
+        queue.setService(oclass, new Erlang(4.0,3));
         model.link(Network.serialRouting(source,delay, queue, sink));
-
-        //System.out.println("HERE!!");
 
         model.printSummary();
 
         SolverSSA solverSSA = new SolverSSA();
         solverSSA.compile(model);
-        solverSSA.setOptions().samples(1000000);
-        solverSSA.setOptions().configureTauLeap(new TauLeapingType(TauLeapingVarType.Poisson,
+        solverSSA.setOptions().samples(10000);
+        /*solverSSA.setOptions().configureTauLeap(new TauLeapingType(TauLeapingVarType.Poisson,
                                                                     TauLeapingOrderStrategy.DirectedCycle,
-                                                                    TauLeapingStateStrategy.Cutoff,0.5));
+                                                                    TauLeapingStateStrategy.Cutoff,0.5));*/
         long startTime = System.nanoTime();
         solverSSA.solve();
         long endTime = System.nanoTime();

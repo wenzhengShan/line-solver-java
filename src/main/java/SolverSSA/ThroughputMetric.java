@@ -52,7 +52,7 @@ public class ThroughputMetric extends Metric<Double, Double> {
                 totalThroughput += 1.0;
                 if (this.record) {
                     this.metricHistory.add(new Pair(this.time, 1.0/tDelta));
-                }else {
+                } else {
                     if (this.useR5 && (this.crossCount < this.r5Value)) {
                         if (this.belowAverage && ((1.0/tDelta) >= this.metricValue)) {
                             this.crossCount++;

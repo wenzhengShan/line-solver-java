@@ -1,4 +1,7 @@
 classdef network_integration
+properties (Constant)
+    jar_loc = "/home/matts/Projects/line-solver-java/out/artifacts/TauSSA_jar/TauSSA.jar"
+end
 methods(Static)
     function java_dist = compile_distribution(line_dist)
         if isa(line_dist, 'Exp')
@@ -11,7 +14,7 @@ methods(Static)
             java_dist = SimUtil.DisabledDistribution();
             return;
         else
-            throw(MException('Invalid Distribution'))
+            throw(MException('Distribution not supported by LINE/TauSSA integration script.'));
         end
     end
     
@@ -27,16 +30,22 @@ methods(Static)
         elseif isa(java_dist, 'SimUtil.DisabledDistribution')
             return;
         else
-            throw(MException('Invalid Distribution'))
+            throw(MException('Distribution not supported by LINE/TauSSA integration script.'));
         end
     end
     
     function set_service(line_node, java_node, job_classes)
+        if (isa(line_node, 'Sink') || isa(line_node, 'Router'))
+            return;
+        end
+
         for n = 1 : length(job_classes)
             if (isa(line_node, 'Queue'))
                 matlab_dist = line_node.getService(job_classes{n});
             elseif (isa(line_node, 'Source'))
                 matlab_dist = line_node.getArrivalProcess(n);
+            else
+                throw(MException('Node not supported by LINE/TauSSA integration script.'));
             end
             service_dist = network_integration.compile_distribution(matlab_dist);
             
@@ -60,6 +69,8 @@ methods(Static)
                 line_node.setService(line_classes{n}, matlab_dist);
             elseif (isa(jline_node, 'StochLib.Source'))
                 line_node.setArrival(line_classes{n}, matlab_dist);
+            else
+                throw(MException('Node not supported by LINE/TauSSA integration script.'));
             end
         end
     end
@@ -89,8 +100,12 @@ methods(Static)
                 classMatrix.put(outClass, outputClasses);
             end
             node_object = StochLib.ClassSwitch(java_network, line_node.getName, classMatrix);
+        elseif isa(line_node, 'Fork')
+            node_object = Fork(java_network);
+        elseif isa(line_node, 'Join')
+            node_object = Join(java_network);
         else
-            throw(MException('Invalid node type'))
+            throw(MException('Node not supported by LINE/TauSSA integration script.'));
         end
     end
     
@@ -105,9 +120,9 @@ methods(Static)
         elseif isa(jline_node, 'StochLib.Router')
             node_object = Router(line_network, jline_node.getName.toCharArray');
         elseif isa(jline_node, 'StochLib.ClassSwitch')
-            throw(MException('Unsupported node'));
+            throw(MException('Node not supported by LINE/TauSSA integration script.'));
         else
-            throw(MException('Invalid node type'))
+            throw(MException('Node not supported by LINE/TauSSA integration script.'));
         end
    end
 
@@ -117,7 +132,7 @@ methods(Static)
         elseif isa(line_class, 'ClosedClass')
             node_class = StochLib.ClosedClass(java_network, line_class.getName, 3, java_network.getNodeByName(line_class.refstat.getName));
         else
-            throw(MException('Invalid class type'));
+            throw(MException('Class type not supported by LINE/TauSSA integration script.'));
         end
     end
 
@@ -127,14 +142,14 @@ methods(Static)
         elseif isa(java_class, 'StochLib.ClosedClass')
             node_class = ClosedClass(line_network, java_class.getName.toCharArray', 3, java_network.getNodeByName(line_class.refstat.getName));
         else
-            throw(MException('Invalid class type'));
+            throw(MException('Class type not supported by LINE/TauSSA integration script.'));
         end
     end
     
     
     function compile_links(line_network, network_object)
         connections = line_network.getConnectionMatrix();
-        [m, n] = size(connections)
+        [m, n] = size(connections);
         nodes = network_object.getNodes();
         routing_matrix = StochLib.RoutingMatrix(network_object.getClasses(), nodes);
         % [ ] Update to consider different weights/routing for classes
@@ -150,7 +165,6 @@ methods(Static)
     
     function line_network = compile_line_links(line_network, java_network)
         P = line_network.initRoutingMatrix;
-        P{1}
         java_nodes = java_network.getNodes();
         n_classes = java_network.getClasses.size();
         n_nodes = java_nodes.size();
@@ -177,7 +191,13 @@ methods(Static)
     end
 
     function network_object = line_to_jline(line_network)
-           %javaaddpath("/home/matts/IdeaProjects/IndivProj/out/artifacts/IndivProj_jar/IndivProj.jar", '-end');
+           routing_probs = line_network.getRoutingStrategies;
+           for n = 1 : length(routing_probs)
+            if (routing_probs(n) ~= RoutingStrategy.ID_RAND) && (routing_probs(n) ~= RoutingStrategy.ID_PROB)
+                throw(MException('Routing Strategy not supported by LINE/TauSSA integration script.'));
+            end
+           end
+           %javaaddpath(jar_loc, '-end');
            network_object = StochLib.Network(line_network.getName);
            network_nodes = line_network.getNodes;
            job_classes = line_network.classes;
@@ -193,7 +213,7 @@ methods(Static)
     end
     
     function line_network = jline_to_line(java_network)
-           %javaaddpath("/home/matts/IdeaProjects/IndivProj/out/artifacts/IndivProj_jar/IndivProj.jar", '-end');
+           %javaaddpath(jar_loc, '-end');
            line_network = Network(java_network.getName);
            network_nodes = java_network.getNodes;
            job_classes = java_network.getClasses;

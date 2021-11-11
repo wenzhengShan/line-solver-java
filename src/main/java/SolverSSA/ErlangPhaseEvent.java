@@ -79,6 +79,7 @@ public class ErlangPhaseEvent extends PhaseEvent implements NodeEvent {
                     this.departureEvent.stateUpdate(stateMatrix, random, timeline);
                     timeline.record(this, stateMatrix);
                 }
+
                 return true;
             } else if (nInPhase == 0) {
                 return true;
@@ -91,7 +92,7 @@ public class ErlangPhaseEvent extends PhaseEvent implements NodeEvent {
 
         if (stateMatrix.phaseUpdate(this, nInPhase, random)) {
             this.departureEvent.stateUpdate(stateMatrix, random, timeline);
-            timeline.record(this.departureEvent, stateMatrix);
+            timeline.record(this, stateMatrix);
             return true;
         }
 
@@ -107,7 +108,7 @@ public class ErlangPhaseEvent extends PhaseEvent implements NodeEvent {
             if (this.node instanceof Source) {
                 int nDepartures = stateMatrix.phaseUpdateN(n,this,random);
                 int nRemDepartures = this.departureEvent.stateUpdateN(nDepartures,stateMatrix, random, timeline);
-                timeline.preRecord(this.departureEvent, stateMatrix, nDepartures-nRemDepartures);
+                timeline.preRecord(this, stateMatrix, nDepartures-nRemDepartures);
                 return 0;
             } else if (nInPhase == 0) {
                 return 0;
@@ -120,7 +121,7 @@ public class ErlangPhaseEvent extends PhaseEvent implements NodeEvent {
 
         int nDepartures = stateMatrix.phaseUpdateN(n, this, nInPhase, random);
         int nRemDepartures = this.departureEvent.stateUpdateN(nDepartures, stateMatrix, random, timeline);
-        timeline.preRecord(this.departureEvent, stateMatrix, nDepartures-nRemDepartures);
+        timeline.preRecord(this, stateMatrix, nDepartures-nRemDepartures);
         return nRemDepartures;
     }
 

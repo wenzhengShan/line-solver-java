@@ -31,8 +31,8 @@ public class SolverSSA {
         public double steadyStateTime;
 
         public SSAOptions() {
-            this.samples = 1000;
-            this.seed = 23000;
+            this.samples = 10000;
+            this.seed = 1;
             this.timeout = Double.POSITIVE_INFINITY;
             this.timeInterval = new Interval(0, Double.POSITIVE_INFINITY);
             cutoff = Double.POSITIVE_INFINITY;
