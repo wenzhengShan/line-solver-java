@@ -3,7 +3,7 @@ package StochLib;
 import java.io.Serializable;
 import java.util.*;
 import SimUtil.Cdf;
-import SolverSSA.OutputEvent;
+import TauSSA.OutputEvent;
 
 public class OutputSection extends Section implements Serializable {
     protected SchedStrategyType schedPolicy;

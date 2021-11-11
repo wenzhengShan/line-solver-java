@@ -1,11 +1,8 @@
 package StochLib;
 
-import SimUtil.Cdf;
-import SolverSSA.ForkOutputEvent;
-import SolverSSA.OutputEvent;
+import TauSSA.ForkOutputEvent;
 
 import java.util.List;
-import java.util.Random;
 
 public class Forker extends OutputSection {
     protected List<JobClass> jobClasses;

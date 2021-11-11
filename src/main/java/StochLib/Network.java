@@ -146,10 +146,10 @@ public class Network extends Model implements Serializable {
         this.jobClasses.add(jobClass);
     }
 
-    public Node getNodeByName(Node name) {
+    public Node getNodeByName(String name) {
         for (Node node : this.nodes) {
             if (node.getName().equals(name)) {
-                return name;
+                return node;
             }
         }
 

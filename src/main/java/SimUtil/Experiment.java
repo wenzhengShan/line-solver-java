@@ -1,15 +1,14 @@
 package SimUtil;
 
-import SolverSSA.SolverSSA;
-import SolverSSA.TauLeapingOrderStrategy;
-import SolverSSA.TauLeapingStateStrategy;
-import SolverSSA.TauLeapingVarType;
-import SolverSSA.Timeline;
-import SolverSSA.TauLeapingType;
+import TauSSA.SolverSSA;
+import TauSSA.TauLeapingOrderStrategy;
+import TauSSA.TauLeapingStateStrategy;
+import TauSSA.TauLeapingVarType;
+import TauSSA.Timeline;
+import TauSSA.TauLeapingType;
 import StochLib.Network;
 
 import java.io.*;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package StochLib;
 
-import SolverSSA.ArrivalEvent;
-import SolverSSA.ClassSwitchArrivalEvent;
+import TauSSA.ArrivalEvent;
+import TauSSA.ClassSwitchArrivalEvent;
 
 import java.io.Serializable;
 import java.util.List;

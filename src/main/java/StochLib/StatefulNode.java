@@ -1,9 +1,9 @@
 package StochLib;
-import SolverSSA.ArrivalEvent;
+import TauSSA.ArrivalEvent;
 
 import java.io.Serializable;
 
-public class StatefulNode extends Node implements Serializable {
+public class    StatefulNode extends Node implements Serializable {
     private Integer statefulIndex;
     public StatefulNode(String name) {
         super(name);

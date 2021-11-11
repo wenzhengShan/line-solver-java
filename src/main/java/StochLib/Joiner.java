@@ -2,7 +2,7 @@ package StochLib;
 
 import java.io.Serializable;
 import java.util.List;
-import SolverSSA.JoinOutputEvent;
+import TauSSA.JoinOutputEvent;
 
 public class Joiner extends OutputSection implements Serializable {
     protected List<JobClass> jobClasses;

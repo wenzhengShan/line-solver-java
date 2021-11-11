@@ -1,13 +1,13 @@
 package StochLib;
 
-import SolverSSA.SinkArrivalEvent;
-import SolverSSA.ArrivalEvent;
+import TauSSA.SinkArrivalEvent;
+import TauSSA.ArrivalEvent;
 
 import java.io.Serializable;
 
 public class Sink extends Node implements Serializable {
     protected SchedStrategy schedStrategy;
-    protected SolverSSA.ArrivalEvent arrivalEvent;
+    protected TauSSA.ArrivalEvent arrivalEvent;
 
     public Sink(Network model, String name) {
         super(name);

@@ -1,12 +1,6 @@
-import SimUtil.Erlang;
 import SimUtil.Exp;
-import StochLib.ClassSwitch;
-import SolverSSA.*;
+import TauSSA.*;
 import StochLib.*;
-import StochLib.Queue;
-import SimUtil.MAPProcess;
-
-import java.util.*;
 
 public class GettingStarted {
     public static void main(String[] args) {
@@ -22,17 +16,14 @@ public class GettingStarted {
     public static void ex3() {
         Network model = new Network("MRP");
         //StochLib.Delay delay = new StochLib.Delay(model, "WorkingSt");
-        StochLib.Source source = new StochLib.Source(model, "Src");
-        StochLib.Queue delay = new StochLib.Queue(model, "WorkingQ", SchedStrategy.FCFS);
+        StochLib.Queue delay = new StochLib.Delay(model, "WorkingQ");
         StochLib.Queue queue = new StochLib.Queue(model, "RepairQ", SchedStrategy.FCFS);
-        StochLib.Sink sink = new StochLib.Sink(model, "Sink");
-        queue.setNumberOfServers(2);
 
-        JobClass oclass = new OpenClass(model, "Machines");
-        source.setArrivalDistribution(oclass, new Exp(0.2));
-        delay.setService(oclass, new Exp(1.0));
-        queue.setService(oclass, new Erlang(4.0,3));
-        model.link(Network.serialRouting(source,delay, queue, sink));
+        JobClass cclass = new ClosedClass(model, "Machines", 3, delay);
+        delay.setService(cclass, new Exp(0.5));
+        queue.setService(cclass, new Exp(4.0));
+        queue.setNumberOfServers(2);
+        model.link(Network.serialRouting(delay, queue));
 
         model.printSummary();
 

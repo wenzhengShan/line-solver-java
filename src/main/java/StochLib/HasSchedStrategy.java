@@ -1,7 +1,6 @@
 package StochLib;
 
 import SimUtil.Distribution;
-import SolverSSA.DepartureEvent;
 
 public interface HasSchedStrategy {
     public SchedStrategy getSchedStrategy();

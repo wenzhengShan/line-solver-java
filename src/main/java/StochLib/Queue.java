@@ -94,7 +94,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
         if (this.hasJobClass(jobClass)) {
             resetState = true;
             this.removeServiceProcess(jobClass);
-            clearState();
+            //clearState();
         }
         this.input.setInputJobProcess(new InputJobProcess(jobClass, this.schedPolicy, DropStrategy.WaitingQueue));
         if (distribution.isImmediate()) {

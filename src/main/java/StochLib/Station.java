@@ -1,6 +1,6 @@
 package StochLib;
 
-import SolverSSA.DepartureEvent;
+import TauSSA.DepartureEvent;
 
 import java.io.Serializable;
 import java.util.HashMap;
