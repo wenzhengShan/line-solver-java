@@ -83,7 +83,16 @@ public class LCFSClassBuffer extends StateCell {
     }
 
     public int getInService(int classIdx) {
-        return this.inService[classIdx];
+        Iterator<Integer> dequeIterator = deque.iterator();
+        int nCt = 0;
+        int acc = 0;
+        while ((dequeIterator.hasNext()) && (nCt < this.nServers)) {
+            if (dequeIterator.next() == classIdx) {
+                acc++;
+            }
+            nCt++;
+        }
+        return acc;
     }
 
     public boolean isEmpty() {
