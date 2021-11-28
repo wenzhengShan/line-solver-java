@@ -180,49 +180,76 @@ class StateMatrixTest {
 
     @org.junit.jupiter.api.Test
     void inProcess() {
-        /*stateMatrix.incrementState(0,0);
-        stateMatrix.addToBuffer(0,0);
-        assertEquals(stateMatrix.inProcess(0,0,1),1);
-        assertEquals(stateMatrix.inProcess(0,1,1),0);
-        assertEquals(stateMatrix.inProcess(1,0,1),0);
+        stateMatrix.stateArrival(0,0);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
 
-        stateMatrix.incrementState(0,0);
-        stateMatrix.addToBuffer(0,0);
-        assertEquals(stateMatrix.inProcess(0,0,1),1);
-        assertEquals(stateMatrix.inProcess(0,0,2),2);
-        assertEquals(stateMatrix.inProcess(0,1,1),0);
-        assertEquals(stateMatrix.inProcess(1,0,1),0);
+        stateMatrix.stateArrival(0,0);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
 
-        stateMatrix.incrementState(0,1);
-        stateMatrix.addToBuffer(0,1);
-        assertEquals(stateMatrix.inProcess(0,0,1),1);
-        assertEquals(stateMatrix.inProcess(0,0,2),2);
-        assertEquals(stateMatrix.inProcess(0,1,1),0);
-        assertEquals(stateMatrix.inProcess(0,1,3),1);
-        assertEquals(stateMatrix.inProcess(1,0,1),0);
+        stateMatrix.stateArrival(0,1);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
 
-        stateMatrix.popFromBuffer(0);
-        stateMatrix.decrementState(0,0);
-        assertEquals(stateMatrix.inProcess(0,0,1),1);
-        assertEquals(stateMatrix.inProcess(0,0,2),1);
-        assertEquals(stateMatrix.inProcess(0,1,1),0);
-        assertEquals(stateMatrix.inProcess(0,1,3),1);
-        assertEquals(stateMatrix.inProcess(1,0,1),0);
+        stateMatrix.stateArrival(1,1);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),1);
 
-        stateMatrix.popFromBuffer(0);
-        stateMatrix.decrementState(0,0);
-        assertEquals(stateMatrix.inProcess(0,0,1),0);
-        assertEquals(stateMatrix.inProcess(0,0,2),0);
-        assertEquals(stateMatrix.inProcess(0,1,1),1);
-        assertEquals(stateMatrix.inProcess(0,1,3),1);
-        assertEquals(stateMatrix.inProcess(1,0,1),0);
+        stateMatrix.stateArrival(1,1);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),1);
 
-        stateMatrix.incrementState(0,0);
-        stateMatrix.addToBuffer(0,0);
-        assertEquals(stateMatrix.inProcess(0,0,1),0);
-        assertEquals(stateMatrix.inProcess(0,0,2),1);
-        assertEquals(stateMatrix.inProcess(0,1,1),1);
-        assertEquals(stateMatrix.inProcess(0,1,3),1);
-        assertEquals(stateMatrix.inProcess(1,0,1),0);*/
+        stateMatrix.stateArrival(1,0);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),1);
+        assertEquals(stateMatrix.inProcess(1,1),0);
+
+        stateMatrix.stateDeparture(1,0);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),1);
+
+        stateMatrix.stateDeparture(1,1);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),1);
+
+        stateMatrix.stateDeparture(1,1);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
+
+        stateMatrix.stateDeparture(0,0);
+        assertEquals(stateMatrix.inProcess(0,0),1);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
+
+        stateMatrix.stateDeparture(0,0);
+        assertEquals(stateMatrix.inProcess(0,0),0);
+        assertEquals(stateMatrix.inProcess(0,1),1);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
+
+        stateMatrix.stateDeparture(0,1);
+        assertEquals(stateMatrix.inProcess(0,0),0);
+        assertEquals(stateMatrix.inProcess(0,1),0);
+        assertEquals(stateMatrix.inProcess(1,0),0);
+        assertEquals(stateMatrix.inProcess(1,1),0);
     }
 }
