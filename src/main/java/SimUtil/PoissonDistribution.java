@@ -43,7 +43,7 @@ public class PoissonDistribution extends DiscreteDistribution implements Seriali
         return curN;
     }
 
-    public List<Double> sample(int n) {
+    public List<Double> sample(int n, Random random) {
         throw new RuntimeException("Not implemented");
     }
     public double getMean() {

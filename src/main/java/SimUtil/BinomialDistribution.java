@@ -27,7 +27,7 @@ public class BinomialDistribution extends DiscreteDistribution implements Serial
         return acc;
     }
 
-    public List<Double> sample(int n) {
+    public List<Double> sample(int n, Random random) {
         throw new RuntimeException("Not implemented");
     }
     public double getMean() {

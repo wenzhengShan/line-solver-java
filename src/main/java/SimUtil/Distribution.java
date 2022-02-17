@@ -5,6 +5,7 @@ import StochLib.Interval;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 abstract public class Distribution  implements Serializable  {
     protected double mean;
@@ -20,7 +21,7 @@ abstract public class Distribution  implements Serializable  {
     protected final double infTimeRep = 1e8; // generic representation of infinite time
     protected final double infRateRep = 1e8; // generic representation of an infinite rate
 
-    public abstract List<Double> sample(int n);
+    public abstract List<Double> sample(int n, Random random);
     public abstract double getMean();
     public abstract double getRate();
     public abstract double getSCV();
@@ -64,5 +65,9 @@ abstract public class Distribution  implements Serializable  {
 
     public boolean isDiscrete() {
         return this instanceof DiscreteDistribution;
+    }
+
+    public List<Double> sample (int n) {
+        return this.sample(n, new Random());
     }
 }

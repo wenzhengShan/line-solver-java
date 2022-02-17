@@ -6,6 +6,7 @@ import StochLib.Interval;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static java.lang.Math.exp;
 import static java.lang.Math.log;
@@ -16,10 +17,13 @@ public class Exp extends MarkovianDistribution  implements Serializable {
         this.setParam(1, "lambda", lambda);
     }
 
-    public List<Double> sample(int n)  {
-        double lambda = (double)this.getParam(1).getValue();
-        //return exprnd(1/lambda, n, 1);
-        throw new RuntimeException("Not Implemented!");
+    public List<Double> sample(int n, Random random)  {
+        List<Double> outList = new ArrayList<Double>();
+        double lambda = (double) this.getParam(1).getValue();
+        for (int i = 0; i < n; i++) {
+            outList.add(Math.log(1-random.nextDouble())/(-lambda));
+        }
+        return outList;
     }
 
     public long getNumberOfPhases() {

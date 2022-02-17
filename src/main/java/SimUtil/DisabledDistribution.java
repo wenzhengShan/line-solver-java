@@ -5,13 +5,14 @@ import StochLib.Interval;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 
 public class DisabledDistribution extends Distribution implements Serializable {
     public DisabledDistribution() {
         super("Disabled", 0, new Interval(0, 0));
     }
 
-    public List<Double> sample(int n)  {
+    public List<Double> sample(int n, Random random)  {
         throw new RuntimeException("Not Implemented!");
     }
 

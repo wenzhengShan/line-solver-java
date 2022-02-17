@@ -3,6 +3,8 @@ import SimUtil.Exp;
 import TauSSA.*;
 import StochLib.*;
 
+import java.util.Arrays;
+
 public class GettingStarted {
     public static void main(String[] args) {
         long startTime = System.nanoTime();

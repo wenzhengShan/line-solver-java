@@ -17,7 +17,7 @@ public class MAPProcess extends MarkovianDistribution implements Serializable {
     List<Double> totalPhaseRate;
     private int nPhases;
     public MAPProcess(int nPhases, List<List<Double>> hiddenTransitions, List<List<Double>> visibleTransitions) {
-        super("SimUtil.MAPProcess", 1);
+        super("MAPProcess", 3);
         this.setParam(1, "n", (long)nPhases);
         this.setParam(2, "hidden_transitions", hiddenTransitions);
         this.setParam(3, "visible_transitions", visibleTransitions);
@@ -51,7 +51,7 @@ public class MAPProcess extends MarkovianDistribution implements Serializable {
         throw new RuntimeException("Not Implemented!");
     }
 
-    public List<Double> sample(int n)  {
+    public List<Double> sample(int n, Random random)  {
         //return exprnd(1/lambda, n, 1);
         throw new RuntimeException("Not Implemented!");
     }

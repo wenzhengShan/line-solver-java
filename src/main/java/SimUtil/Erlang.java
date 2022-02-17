@@ -4,6 +4,7 @@ import StochLib.Interval;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 
 public class Erlang extends MarkovianDistribution implements Serializable {
     /*public static List<List<Double>> mapErlang(double mean, long k) {
@@ -30,7 +31,7 @@ public class Erlang extends MarkovianDistribution implements Serializable {
         this.setParam(2, "r", nPhases);
     }
 
-    public List<Double> sample(int n)  {
+    public List<Double> sample(int n, Random random)  {
         double alpha = (double)this.getParam(1).getValue();
         long r = (long) this.getParam(2).getValue();
         //return exprnd(1/lambda, n, 1);

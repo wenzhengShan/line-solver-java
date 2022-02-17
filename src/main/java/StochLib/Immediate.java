@@ -5,6 +5,7 @@ import SimUtil.Distribution;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Immediate extends Distribution implements Serializable {
     public Immediate() {
@@ -15,7 +16,7 @@ public class Immediate extends Distribution implements Serializable {
         return false;
     }
 
-    public List<Double> sample(int n) {
+    public List<Double> sample(int n, Random random) {
         List<Double> ret_list = new ArrayList<Double>();
         for (int i = 0; i < n; i++) {
             ret_list.add(0.0);
