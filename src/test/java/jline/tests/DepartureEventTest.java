@@ -1,4 +1,4 @@
-package jline.solvers.ssa;
+package jline.tests;
 
 import jline.lang.Exp;
 import jline.lang.*;
@@ -7,6 +7,7 @@ import jline.lang.Queue;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import jline.solvers.ssa.*;
 
 class DepartureEventTest {
     private DepartureEvent departureEvent1;

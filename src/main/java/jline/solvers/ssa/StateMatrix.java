@@ -90,11 +90,11 @@ public class StateMatrix {
         this.state = that.state.clone();
     }
 
-    protected void addToBuffer(int nodeIdx, int classIdx) {
+    public void addToBuffer(int nodeIdx, int classIdx) {
         this.buffers[nodeIdx].addToBuffer(classIdx);
     }
 
-    protected void addToBuffer(int nodeIdx, int classIdx, int count) {
+    public void addToBuffer(int nodeIdx, int classIdx, int count) {
         this.buffers[nodeIdx].addNToBuffer(classIdx, count);
     }
 

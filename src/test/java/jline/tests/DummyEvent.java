@@ -1,9 +1,10 @@
-package jline.solvers.ssa;//package SolverSSA;
+package jline.tests;//package SolverSSA;
 
 import jline.lang.*;
 import jline.lang.*;
 
 import java.util.Random;
+import jline.solvers.ssa.*;
 
 public class DummyEvent extends Event {
     private Distribution distribution;

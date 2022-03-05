@@ -1,4 +1,4 @@
-package jline.solvers.ssa;
+package jline.tests;
 
 import jline.lang.Exp;
 import jline.lang.*;
@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import jline.solvers.ssa.*;
 
 class QueueTest {
     @org.junit.jupiter.api.BeforeEach

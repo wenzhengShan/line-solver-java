@@ -1,6 +1,7 @@
-package jline.solvers.ssa;
+package jline.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
+import jline.solvers.ssa.*;
 
 class ClassSwitchArrivalEventTest {
     private FCFSClassBuffer classBuffer;

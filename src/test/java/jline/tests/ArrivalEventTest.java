@@ -1,5 +1,6 @@
-package jline.solvers.ssa;
+package jline.tests;
 
+import jline.solvers.ssa.*;
 import jline.lang.*;
 import jline.lang.Queue;
 

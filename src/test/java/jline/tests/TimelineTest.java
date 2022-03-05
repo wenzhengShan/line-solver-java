@@ -1,9 +1,10 @@
-package jline.solvers.ssa;
+package jline.tests;
 
 import jline.lang.NetworkStruct;
 import jline.lang.SchedStrategy;
 
 import static org.junit.jupiter.api.Assertions.*;
+import jline.solvers.ssa.*;
 
 class TimelineTest {
     Timeline timeline;

@@ -1,10 +1,11 @@
-package jline.solvers.ssa;
+package jline.tests;
 
 import jline.lang.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import jline.solvers.ssa.*;
 
 public class CombinedDepartureEvent extends Event implements NodeEvent {
     private int statefulIndex;
