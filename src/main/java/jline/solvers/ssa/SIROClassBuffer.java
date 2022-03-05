@@ -1,10 +1,10 @@
 package jline.solvers.ssa;
 
-import jline.lang.Pair;
-
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Random;
+
+import jline.util.Pair;
 
 public class SIROClassBuffer extends StateCell {
     protected PriorityQueue<Pair<Double, Integer>> classBuffer;

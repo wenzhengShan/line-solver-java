@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
 import jline.lang.NetworkStruct;
-import jline.lang.Pair;
-import jline.lang.SchedStrategy;
+import jline.lang.constant.SchedStrategy;
+import jline.util.Pair;
 
 import java.util.*;
 

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import jline.lang.constant.RoutingStrategy;
+import jline.lang.nodes.Node;
+
 public class OutputStrategy implements Serializable {
     private JobClass jobClass;
     private RoutingStrategy routingStrategy;

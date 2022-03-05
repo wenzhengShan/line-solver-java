@@ -3,6 +3,9 @@ package jline.lang;
 import java.io.Serializable;
 import java.util.*;
 
+import jline.lang.constant.RoutingStrategy;
+import jline.lang.nodes.Node;
+
 public class RoutingMatrix implements Serializable {
     private List<List<List<Double>>> routingArray;
     private List<JobClass> jobClasses;

@@ -1,6 +1,6 @@
 package jline.solvers.ssa;
 
-import jline.lang.Pair;
+import jline.util.Pair;
 
 public class UtilizationMetric extends Metric<Double, Double> {
     public UtilizationMetric(int nodeIdx, int classIdx, int nServers, boolean record) {

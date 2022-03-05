@@ -1,12 +1,12 @@
 package jline.solvers.ssa;
 
-import jline.lang.BinomialDistribution;
-import jline.lang.Cdf;
-import jline.lang.Source;
-import jline.lang.PoissonDistribution;
+import jline.lang.distributions.BinomialDistribution;
+import jline.lang.distributions.PoissonDistribution;
+import jline.lang.nodes.Node;
+import jline.lang.nodes.Source;
+import jline.util.Cdf;
+import jline.util.Pair;
 import jline.lang.OutputStrategy;
-import jline.lang.Pair;
-import jline.lang.Node;
 
 import java.util.*;
 

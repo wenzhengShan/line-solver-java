@@ -1,6 +1,7 @@
 package jline.lang;
 
-import jline.lang.Distribution;
+import jline.lang.constant.SchedStrategy;
+import jline.lang.distributions.Distribution;
 
 public interface HasSchedStrategy {
     public SchedStrategy getSchedStrategy();

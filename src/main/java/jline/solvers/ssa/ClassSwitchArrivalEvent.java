@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
-import jline.lang.Cdf;
 import jline.lang.JobClass;
-import jline.lang.Node;
+import jline.lang.nodes.Node;
+import jline.util.Cdf;
 
 import java.util.*;
 

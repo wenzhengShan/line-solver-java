@@ -1,6 +1,9 @@
 package jline.tests;
 
 import jline.lang.*;
+import jline.lang.constant.SchedStrategy;
+import jline.lang.distributions.Immediate;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

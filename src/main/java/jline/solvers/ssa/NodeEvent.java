@@ -1,5 +1,5 @@
 package jline.solvers.ssa;
-import jline.lang.Node;
+import jline.lang.nodes.Node;
 
 public interface NodeEvent {
     public Node getNode();

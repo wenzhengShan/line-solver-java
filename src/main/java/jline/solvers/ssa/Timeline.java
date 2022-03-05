@@ -1,6 +1,8 @@
 package jline.solvers.ssa;
 
 import jline.lang.*;
+import jline.lang.constant.SchedStrategy;
+import jline.util.Pair;
 
 import java.util.*;
 

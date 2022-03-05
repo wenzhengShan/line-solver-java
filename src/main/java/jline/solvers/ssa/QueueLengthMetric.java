@@ -1,6 +1,6 @@
 package jline.solvers.ssa;
 
-import jline.lang.Pair;
+import jline.util.Pair;
 
 public class QueueLengthMetric extends Metric<Double, Double> {
     public QueueLengthMetric(int nodeIdx, int classIdx, int nServers, boolean record) {

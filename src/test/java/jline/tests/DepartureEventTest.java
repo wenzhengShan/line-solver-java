@@ -1,8 +1,9 @@
 package jline.tests;
 
-import jline.lang.Exp;
 import jline.lang.*;
-import jline.lang.Queue;
+import jline.lang.constant.SchedStrategy;
+import jline.lang.distributions.Exp;
+import jline.lang.nodes.Queue;
 
 import java.util.Random;
 

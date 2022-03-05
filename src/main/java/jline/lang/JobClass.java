@@ -2,6 +2,8 @@ package jline.lang;
 
 import java.io.Serializable;
 
+import jline.lang.nodes.Node;
+
 public class JobClass extends NetworkElement implements Serializable {
     protected JobClassType type;
     protected int priority;

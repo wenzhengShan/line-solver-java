@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
-import jline.lang.Node;
-
 import java.util.Random;
+
+import jline.lang.nodes.Node;
 
 public class SinkArrivalEvent extends ArrivalEvent{
     public SinkArrivalEvent(Node node) {

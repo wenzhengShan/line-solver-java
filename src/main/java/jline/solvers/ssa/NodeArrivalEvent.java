@@ -1,7 +1,7 @@
 package jline.solvers.ssa;
 
 import jline.lang.JobClass;
-import jline.lang.Node;
+import jline.lang.nodes.Node;
 
 import java.util.Random;
 

@@ -2,6 +2,9 @@ package jline.lang;
 
 import java.io.Serializable;
 
+import jline.lang.nodes.Node;
+import jline.lang.nodes.Source;
+
 public class OpenClass extends JobClass  implements Serializable {
     protected int classIndex;
     protected Network model;

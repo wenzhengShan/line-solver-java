@@ -1,7 +1,7 @@
 package jline.solvers.ssa;
 
-import jline.lang.Pair;
-import jline.lang.SchedStrategy;
+import jline.lang.constant.SchedStrategy;
+import jline.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Deque;

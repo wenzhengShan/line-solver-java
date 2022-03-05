@@ -1,8 +1,10 @@
 package jline.lang;
 
-import jline.lang.Distribution;
-
 import java.io.Serializable;
+
+import jline.lang.distributions.Distribution;
+import jline.lang.*;
+import jline.lang.constant.ServiceStrategy;
 
 public class ServiceProcess implements Serializable {
     private JobClass jobClass;

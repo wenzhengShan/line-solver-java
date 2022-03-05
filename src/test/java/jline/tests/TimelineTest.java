@@ -1,7 +1,7 @@
 package jline.tests;
 
 import jline.lang.NetworkStruct;
-import jline.lang.SchedStrategy;
+import jline.lang.constant.SchedStrategy;
 
 import static org.junit.jupiter.api.Assertions.*;
 import jline.solvers.ssa.*;

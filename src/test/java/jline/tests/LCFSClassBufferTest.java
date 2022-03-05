@@ -1,7 +1,5 @@
 package jline.tests;
 
-import jline.lang.Pair;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +7,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import jline.solvers.ssa.*;
+import jline.util.Pair;
 
 class LCFSClassBufferTest {
     private LCFSClassBuffer classBuffer;

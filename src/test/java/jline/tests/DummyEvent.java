@@ -1,6 +1,9 @@
 package jline.tests;//package SolverSSA;
 
 import jline.lang.*;
+import jline.lang.distributions.DisabledDistribution;
+import jline.lang.distributions.Distribution;
+import jline.lang.distributions.Immediate;
 import jline.lang.*;
 
 import java.util.Random;

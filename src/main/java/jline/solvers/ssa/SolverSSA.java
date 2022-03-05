@@ -1,6 +1,12 @@
 package jline.solvers.ssa;
 
 import jline.lang.*;
+import jline.lang.constant.DropStrategy;
+import jline.lang.constant.SchedStrategy;
+import jline.lang.nodes.Node;
+import jline.lang.nodes.StatefulNode;
+import jline.lang.nodes.Station;
+import jline.util.Interval;
 
 import java.util.*;
 
@@ -272,7 +278,7 @@ public class SolverSSA {
     public void compile(NetworkStruct networkStruct) {
         this.networkStruct = networkStruct;
         this.networkCache = new NetworkData(this.networkStruct);
-        throw new RuntimeException("jline.Network structs not supported");
+        throw new RuntimeException("Network structs not supported");
     }
 
     public Timeline solve() {
@@ -282,7 +288,7 @@ public class SolverSSA {
             } else if (this.network == null) {
                 this.compile(this.network);
             } else {
-                throw new RuntimeException("jline.Network data not provided!");
+                throw new RuntimeException("Network data not provided!");
             }
         }
 

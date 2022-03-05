@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jline.lang.constant.*;
+import jline.lang.nodes.*;
+
+
 public class Network extends Model implements Serializable {
     private boolean doChecks;
     private boolean hasState;

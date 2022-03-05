@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
-import jline.lang.MAPProcess;
-
 import java.util.Random;
+
+import jline.lang.processes.MAPProcess;
 
 public class MAPPhaseEvent extends PhaseEvent {
     MAPProcess mapProcess;

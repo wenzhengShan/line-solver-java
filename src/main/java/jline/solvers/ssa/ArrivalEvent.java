@@ -1,9 +1,9 @@
 package jline.solvers.ssa;
 
 import jline.lang.JobClass;
-import jline.lang.Node;
-import jline.lang.Sink;
-import jline.lang.StatefulNode;
+import jline.lang.nodes.Node;
+import jline.lang.nodes.Sink;
+import jline.lang.nodes.StatefulNode;
 
 import java.io.Serializable;
 import java.util.Random;

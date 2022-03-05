@@ -2,6 +2,10 @@ package jline.lang;
 
 import java.io.Serializable;
 import java.util.List;
+
+import jline.lang.constant.RoutingStrategy;
+import jline.lang.nodes.Node;
+import jline.lang.sections.OutputSection;
 import jline.solvers.ssa.JoinOutputEvent;
 
 public class Joiner extends OutputSection implements Serializable {

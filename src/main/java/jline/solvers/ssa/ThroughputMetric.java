@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
-import jline.lang.Pair;
-
 import java.util.ArrayList;
+
+import jline.util.Pair;
 
 public class ThroughputMetric extends Metric<Double, Double> {
     public ThroughputMetric(int nodeIdx, int classIdx, int nServers, boolean record) {

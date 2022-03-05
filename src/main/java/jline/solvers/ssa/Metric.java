@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
-import jline.lang.Pair;
-
 import java.util.*;
+
+import jline.util.Pair;
 
 public abstract class Metric<T extends Number, U> {
     protected double time;

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jline.lang.*;
+import jline.util.Cdf;
 
 import java.util.HashMap;
 import java.util.Map;

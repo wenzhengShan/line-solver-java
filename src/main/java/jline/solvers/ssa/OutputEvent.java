@@ -1,8 +1,8 @@
 package jline.solvers.ssa;
 
 import jline.lang.JobClass;
-import jline.lang.OutputSection;
-import jline.lang.Node;
+import jline.lang.nodes.Node;
+import jline.lang.sections.OutputSection;
 
 import java.util.Random;
 
