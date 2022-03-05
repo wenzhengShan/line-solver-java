@@ -1,7 +1,7 @@
-package TauSSA;
+package jline.solvers.ssa;
 
-import Line.NetworkStruct;
-import Line.SchedStrategy;
+import jline.lang.NetworkStruct;
+import jline.lang.SchedStrategy;
 
 import static org.junit.jupiter.api.Assertions.*;
 

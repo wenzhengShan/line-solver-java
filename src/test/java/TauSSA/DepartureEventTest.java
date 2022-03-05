@@ -1,8 +1,8 @@
-package TauSSA;
+package jline.solvers.ssa;
 
-import SimUtil.Exp;
-import Line.*;
-import Line.Queue;
+import jline.lang.Exp;
+import jline.lang.*;
+import jline.lang.Queue;
 
 import java.util.Random;
 

@@ -1,7 +1,7 @@
-package TauSSA;//package SolverSSA;
+package jline.solvers.ssa;//package SolverSSA;
 
-import SimUtil.*;
-import Line.*;
+import jline.lang.*;
+import jline.lang.*;
 
 import java.util.Random;
 

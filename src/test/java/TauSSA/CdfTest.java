@@ -1,10 +1,10 @@
-package TauSSA;
+package jline.solvers.ssa;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import SimUtil.*;
+import jline.lang.*;
 
 import java.util.HashMap;
 import java.util.Map;

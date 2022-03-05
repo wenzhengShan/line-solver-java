@@ -1,6 +1,6 @@
-package TauSSA;
+package jline.solvers.ssa;
 
-import Line.Pair;
+import jline.lang.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;

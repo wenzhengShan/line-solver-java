@@ -1,4 +1,4 @@
-package TauSSA;
+package jline.solvers.ssa;
 
 import static org.junit.jupiter.api.Assertions.*;
 

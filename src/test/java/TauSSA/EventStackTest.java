@@ -1,6 +1,6 @@
-package TauSSA;
+package jline.solvers.ssa;
 
-import Line.*;
+import jline.lang.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
