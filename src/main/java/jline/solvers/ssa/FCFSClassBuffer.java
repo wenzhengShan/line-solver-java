@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class FCFSClassBuffer extends StateCell {
-    protected Deque<Integer> deque;
+	public Deque<Integer> deque;
     protected int nServers;
     protected int[] inQueue;
     protected int[] inService;

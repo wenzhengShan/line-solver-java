@@ -184,7 +184,7 @@ public class StateMatrix {
         return new Pair<Map<Integer, Integer>, Integer>(classOutputs, res);
     }
 
-    protected int popFromBuffer(int nodeIdx) {
+    public int popFromBuffer(int nodeIdx) {
         // remove one job from the buffer at node, this doesn't necessarily update the state
         return this.buffers[nodeIdx].popFromBuffer();
     }
@@ -222,11 +222,11 @@ public class StateMatrix {
         return this.buffers[nodeIdx].isEmpty();
     }
 
-    protected void incrementState(int nodeIdx, int classIdx) {
+    public void incrementState(int nodeIdx, int classIdx) {
         this.state[nodeIdx][classIdx]++;
     }
 
-    protected void decrementState(int nodeIdx, int classIdx) {
+    public void decrementState(int nodeIdx, int classIdx) {
         this.state[nodeIdx][classIdx]--;
     }
 
