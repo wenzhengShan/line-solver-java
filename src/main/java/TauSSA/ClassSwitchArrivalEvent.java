@@ -1,8 +1,8 @@
 package TauSSA;
 
 import SimUtil.Cdf;
-import StochLib.JobClass;
-import StochLib.Node;
+import Line.JobClass;
+import Line.Node;
 
 import java.util.*;
 

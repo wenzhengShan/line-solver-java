@@ -1,8 +1,8 @@
 package TauSSA;
 
-import StochLib.NetworkStruct;
-import StochLib.Pair;
-import StochLib.SchedStrategy;
+import Line.NetworkStruct;
+import Line.Pair;
+import Line.SchedStrategy;
 
 import java.util.*;
 

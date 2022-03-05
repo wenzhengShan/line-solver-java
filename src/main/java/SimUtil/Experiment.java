@@ -6,7 +6,7 @@ import TauSSA.TauLeapingStateStrategy;
 import TauSSA.TauLeapingVarType;
 import TauSSA.Timeline;
 import TauSSA.TauLeapingType;
-import StochLib.Network;
+import Line.Network;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package TauSSA;
 
-import StochLib.JobClass;
-import StochLib.Node;
+import Line.JobClass;
+import Line.Node;
 
 import java.util.Random;
 

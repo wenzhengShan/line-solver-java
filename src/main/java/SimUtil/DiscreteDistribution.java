@@ -1,7 +1,7 @@
 package SimUtil;
 
 import SimUtil.Distribution;
-import StochLib.Interval;
+import Line.Interval;
 
 import java.io.Serializable;
 

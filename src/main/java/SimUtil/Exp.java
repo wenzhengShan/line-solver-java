@@ -1,7 +1,7 @@
 package SimUtil;
 
 import SimUtil.MarkovianDistribution;
-import StochLib.Interval;
+import Line.Interval;
 
 import java.io.Serializable;
 import java.util.ArrayList;

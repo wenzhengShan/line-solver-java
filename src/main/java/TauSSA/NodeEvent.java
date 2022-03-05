@@ -1,5 +1,5 @@
 package TauSSA;
-import StochLib.Node;
+import Line.Node;
 
 public interface NodeEvent {
     public Node getNode();

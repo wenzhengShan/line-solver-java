@@ -1,6 +1,6 @@
 package TauSSA;
 
-import StochLib.Pair;
+import Line.Pair;
 
 public class QueueLengthMetric extends Metric<Double, Double> {
     public QueueLengthMetric(int nodeIdx, int classIdx, int nServers, boolean record) {

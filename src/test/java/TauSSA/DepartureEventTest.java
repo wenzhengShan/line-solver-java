@@ -1,8 +1,8 @@
 package TauSSA;
 
 import SimUtil.Exp;
-import StochLib.*;
-import StochLib.Queue;
+import Line.*;
+import Line.Queue;
 
 import java.util.Random;
 

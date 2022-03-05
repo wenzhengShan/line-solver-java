@@ -1,7 +1,7 @@
 package TauSSA;
 
-import StochLib.NetworkStruct;
-import StochLib.SchedStrategy;
+import Line.NetworkStruct;
+import Line.SchedStrategy;
 
 import static org.junit.jupiter.api.Assertions.*;
 

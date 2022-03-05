@@ -3,9 +3,9 @@ package TauSSA;
 import SimUtil.BinomialDistribution;
 import SimUtil.Cdf;
 import SimUtil.PoissonDistribution;
-import StochLib.OutputStrategy;
-import StochLib.Pair;
-import StochLib.Node;
+import Line.OutputStrategy;
+import Line.Pair;
+import Line.Node;
 
 import java.util.*;
 
@@ -100,7 +100,7 @@ public class EventStack {
             Pair<Node,Event> iterPair = eventIterator.next();
             Node eventNode = iterPair.getLeft();
 
-            if ((eventNode instanceof StochLib.Source) || (eventNode.isRefstat())) {
+            if ((eventNode instanceof Line.Source) || (eventNode.isRefstat())) {
                 candidateEvents.add(iterPair);
                 eventIterator.remove();
             }

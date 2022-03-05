@@ -1,9 +1,9 @@
 package TauSSA;
 
-import StochLib.JobClass;
-import StochLib.Node;
-import StochLib.Sink;
-import StochLib.StatefulNode;
+import Line.JobClass;
+import Line.Node;
+import Line.Sink;
+import Line.StatefulNode;
 
 import java.io.Serializable;
 import java.util.Random;

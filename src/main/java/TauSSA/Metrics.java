@@ -1,6 +1,6 @@
 package TauSSA;
 
-import StochLib.Network;
+import Line.Network;
 
 import java.io.FileWriter;
 import java.util.ArrayList;

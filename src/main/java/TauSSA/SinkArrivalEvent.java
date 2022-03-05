@@ -1,6 +1,6 @@
 package TauSSA;
 
-import StochLib.Node;
+import Line.Node;
 
 import java.util.Random;
 

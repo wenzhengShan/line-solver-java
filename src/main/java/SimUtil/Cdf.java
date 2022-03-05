@@ -1,6 +1,6 @@
 package SimUtil;
 
-import StochLib.Pair;
+import Line.Pair;
 
 import java.io.Serializable;
 import java.util.*;

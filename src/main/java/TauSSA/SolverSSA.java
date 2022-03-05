@@ -1,6 +1,6 @@
 package TauSSA;
 
-import StochLib.*;
+import Line.*;
 
 import java.util.*;
 
@@ -272,7 +272,7 @@ public class SolverSSA {
     public void compile(NetworkStruct networkStruct) {
         this.networkStruct = networkStruct;
         this.networkCache = new NetworkData(this.networkStruct);
-        throw new RuntimeException("StochLib.Network structs not supported");
+        throw new RuntimeException("Line.Network structs not supported");
     }
 
     public Timeline solve() {
@@ -282,7 +282,7 @@ public class SolverSSA {
             } else if (this.network == null) {
                 this.compile(this.network);
             } else {
-                throw new RuntimeException("StochLib.Network data not provided!");
+                throw new RuntimeException("Line.Network data not provided!");
             }
         }
 

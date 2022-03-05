@@ -1,7 +1,7 @@
 package TauSSA;
 
-import StochLib.Pair;
-import StochLib.SchedStrategy;
+import Line.Pair;
+import Line.SchedStrategy;
 
 import java.util.ArrayList;
 import java.util.Deque;

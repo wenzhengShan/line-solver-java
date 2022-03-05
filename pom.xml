@@ -6,7 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>line-solver</artifactId>
-    <version>2.0.19</version>
+    <version>2.0</version>
 
     <build>
         <plugins>

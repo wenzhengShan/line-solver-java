@@ -1,7 +1,7 @@
 package TauSSA;
 
 import SimUtil.*;
-import StochLib.*;
+import Line.*;
 
 import java.util.Random;
 

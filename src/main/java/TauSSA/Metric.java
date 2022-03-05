@@ -1,6 +1,6 @@
 package TauSSA;
 
-import StochLib.Pair;
+import Line.Pair;
 
 import java.util.*;
 

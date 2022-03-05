@@ -1,7 +1,7 @@
 import SimUtil.Erlang;
 import SimUtil.Exp;
 import TauSSA.*;
-import StochLib.*;
+import Line.*;
 import java.util.Arrays;
 
 public class GettingStarted {
