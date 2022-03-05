@@ -9,9 +9,9 @@ import jline.lang.constant.RoutingStrategy;
 import jline.lang.sections.InputSection;
 import jline.lang.sections.OutputSection;
 import jline.lang.sections.ServiceSection;
-import jline.solvers.ssa.ArrivalEvent;
-import jline.solvers.ssa.NodeArrivalEvent;
-import jline.solvers.ssa.OutputEvent;
+import jline.solvers.ssa.events.ArrivalEvent;
+import jline.solvers.ssa.events.NodeArrivalEvent;
+import jline.solvers.ssa.events.OutputEvent;
 
 import java.io.Serializable;
 import java.util.*;

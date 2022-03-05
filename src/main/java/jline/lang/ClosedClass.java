@@ -1,8 +1,8 @@
 package jline.lang;
 
 import jline.lang.JobClass;
-import jline.lang.JobClassType;
 import jline.lang.Network;
+import jline.lang.constant.JobClassType;
 import jline.lang.nodes.Station;
 
 import java.io.Serializable;

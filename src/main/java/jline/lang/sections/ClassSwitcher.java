@@ -16,6 +16,6 @@ public class ClassSwitcher extends ServiceSection implements Serializable {
 
         this.jobClasses = jobClasses;
         this.numberOfServers = 1;
-        this.serviceProcesses = new HashMap<JobClass, ServiceProcess>();
+        this.serviceProcesses = new HashMap<JobClass, ServiceBinding>();
     }
 }

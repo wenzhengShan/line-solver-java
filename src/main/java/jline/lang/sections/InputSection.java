@@ -13,20 +13,20 @@ import jline.lang.sections.*;
 
 public class InputSection extends Section  implements Serializable {
     protected SchedStrategyType schedPolicy;
-    protected List<Inputs> inputJobProcesses;
+    protected List<InputBinding> inputJobProcesses;
 
     public InputSection(String className) {
         super(className);
-        this.inputJobProcesses = new ArrayList<Inputs>();
+        this.inputJobProcesses = new ArrayList<InputBinding>();
     }
 
-    public void setInputJobProcess(Inputs process) {
+    public void setInputJobProcess(InputBinding process) {
         removeInputJobProcess(process.getJobClass());
         inputJobProcesses.add(process);
     }
 
     protected void removeInputJobProcess(JobClass jobClass) {
-        Iterator<Inputs> inputJobProcessIter = this.inputJobProcesses.iterator();
+        Iterator<InputBinding> inputJobProcessIter = this.inputJobProcesses.iterator();
         while (inputJobProcessIter.hasNext()) {
             if (inputJobProcessIter.next().getJobClass() == jobClass) {
                 inputJobProcessIter.remove();
@@ -34,7 +34,7 @@ public class InputSection extends Section  implements Serializable {
         }
     }
 
-    public void setServiceProcess(ServiceProcess serviceProcess) {
+    public void setServiceProcess(ServiceBinding serviceProcess) {
 
     }
 }

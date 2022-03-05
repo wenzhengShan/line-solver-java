@@ -10,15 +10,15 @@ import jline.lang.sections.*;
 
 public class ServiceSection extends Section implements Serializable {
     protected double numberOfServers;
-    protected Map<JobClass, ServiceProcess> serviceProcesses;
+    protected Map<JobClass, ServiceBinding> serviceProcesses;
 
     public ServiceSection(String className) {
         super(className);
 
-        this.serviceProcesses = new HashMap<JobClass, ServiceProcess>();
+        this.serviceProcesses = new HashMap<JobClass, ServiceBinding>();
     }
 
-    public ServiceProcess getServiceProcess(JobClass jobClass) {
+    public ServiceBinding getServiceProcess(JobClass jobClass) {
         return this.serviceProcesses.get(jobClass);
     }
 
@@ -29,7 +29,7 @@ public class ServiceSection extends Section implements Serializable {
         return this.serviceProcesses.get(jobClass).getDistribution();
     }
 
-    public void setServiceProcesses(ServiceProcess serviceProcess) {
+    public void setServiceProcesses(ServiceBinding serviceProcess) {
         this.serviceProcesses.put(serviceProcess.getJobClass(), serviceProcess);
     }
 }

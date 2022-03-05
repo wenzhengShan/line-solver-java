@@ -1,4 +1,4 @@
-package jline.lang;
+package jline.lang.state;
 
 import java.io.Serializable;
 

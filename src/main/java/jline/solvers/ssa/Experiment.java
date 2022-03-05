@@ -1,12 +1,8 @@
-package jline.lang;
+package jline.solvers.ssa;
 
-import jline.solvers.ssa.SolverSSA;
-import jline.solvers.ssa.TauLeapingOrderStrategy;
-import jline.solvers.ssa.TauLeapingStateStrategy;
-import jline.solvers.ssa.TauLeapingVarType;
-import jline.solvers.ssa.Timeline;
-import jline.solvers.ssa.TauLeapingType;
 import jline.lang.Network;
+import jline.solvers.ssa.strategies.TauLeapingOrderStrategy;
+import jline.solvers.ssa.strategies.TauLeapingStateStrategy;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import jline.lang.constant.*;
 import jline.lang.nodes.*;
+import jline.lang.state.NetworkState;
 
 
 public class Network extends Model implements Serializable {

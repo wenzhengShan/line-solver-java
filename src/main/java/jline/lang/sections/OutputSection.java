@@ -3,7 +3,6 @@ package jline.lang.sections;
 import java.io.Serializable;
 import java.util.*;
 
-import jline.solvers.ssa.OutputEvent;
 import jline.util.Cdf;
 import jline.lang.*;
 import jline.lang.constant.RoutingStrategy;
@@ -11,6 +10,7 @@ import jline.lang.constant.SchedStrategyType;
 import jline.lang.distributions.*;
 import jline.lang.nodes.*;
 import jline.lang.sections.*;
+import jline.solvers.ssa.events.OutputEvent;
 
 
 public class OutputSection extends Section implements Serializable {

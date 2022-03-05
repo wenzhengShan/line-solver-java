@@ -1,13 +1,12 @@
 package jline.lang.sections;
 
-import jline.solvers.ssa.ForkOutputEvent;
-
 import java.util.List;
 import jline.lang.*;
 import jline.lang.constant.RoutingStrategy;
 import jline.lang.distributions.*;
 import jline.lang.nodes.*;
 import jline.lang.sections.*;
+import jline.solvers.ssa.events.ForkOutputEvent;
 
 public class Forker extends OutputSection {
     protected List<JobClass> jobClasses;

@@ -1,4 +1,4 @@
-package jline.lang;
+package jline.util;
 
 import java.io.Serializable;
 

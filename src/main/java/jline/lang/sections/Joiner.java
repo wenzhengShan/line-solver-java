@@ -1,12 +1,14 @@
-package jline.lang;
+package jline.lang.sections;
 
 import java.io.Serializable;
 import java.util.List;
 
+import jline.lang.JobClass;
+import jline.lang.Network;
+import jline.lang.OutputStrategy;
 import jline.lang.constant.RoutingStrategy;
 import jline.lang.nodes.Node;
-import jline.lang.sections.OutputSection;
-import jline.solvers.ssa.JoinOutputEvent;
+import jline.solvers.ssa.events.JoinOutputEvent;
 
 public class Joiner extends OutputSection implements Serializable {
     protected List<JobClass> jobClasses;

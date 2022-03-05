@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import jline.solvers.ssa.*;
+import jline.solvers.ssa.events.Event;
+import jline.solvers.ssa.events.NodeEvent;
+import jline.solvers.ssa.state.StateMatrix;
 import jline.util.Cdf;
 import jline.util.Pair;
 

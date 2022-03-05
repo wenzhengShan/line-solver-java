@@ -8,6 +8,7 @@ import jline.lang.distributions.*;
 import jline.lang.nodes.*;
 import jline.lang.sections.*;
 import jline.util.Interval;
+import jline.util.Param;
 
 abstract public class Distribution  implements Serializable  {
     protected double mean;

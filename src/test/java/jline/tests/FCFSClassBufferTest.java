@@ -6,6 +6,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import jline.solvers.ssa.*;
+import jline.solvers.ssa.state.FCFSClassBuffer;
 import jline.util.Pair;
 
 class FCFSClassBufferTest {

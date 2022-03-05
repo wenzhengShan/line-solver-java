@@ -1,11 +1,10 @@
 package jline.lang.nodes;
 
-import jline.solvers.ssa.DepartureEvent;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import jline.lang.*;
+import jline.solvers.ssa.events.DepartureEvent;
 
 public class Station extends StatefulNode implements Serializable {
     protected int numberOfServers;

@@ -12,6 +12,8 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import jline.solvers.ssa.*;
+import jline.solvers.ssa.events.EventStack;
+import jline.solvers.ssa.state.StateMatrix;
 
 class EventStackTest {
     private StateMatrix stateMatrix;

@@ -18,13 +18,13 @@ import jline.lang.sections.*;
 public class Queue extends Station implements HasSchedStrategy, Serializable {
     protected SchedStrategy schedStrategy;
     protected SchedStrategyType schedPolicy;
-    protected List<ServiceProcess> serviceProcesses;
+    protected List<ServiceBinding> serviceProcesses;
     protected HashMap<JobClass, Double> schedStrategyPar;
 
     public Queue(Network model, String name, SchedStrategy schedStrategy) {
         super(name);
 
-        this.serviceProcesses = new ArrayList<ServiceProcess>();
+        this.serviceProcesses = new ArrayList<ServiceBinding>();
         this.schedStrategyPar = new HashMap<JobClass, Double>();
 
         this.setModel(model);
@@ -83,7 +83,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
     }
 
     public final Distribution getServiceProcess(JobClass jobClass) {
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             if (serviceProcess.getJobClass() == jobClass) {
                 return serviceProcess.getDistribution();
             }        }
@@ -102,11 +102,11 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
             this.removeServiceProcess(jobClass);
             //clearState();
         }
-        this.input.setInputJobProcess(new Inputs(jobClass, this.schedPolicy, DropStrategy.WaitingQueue));
+        this.input.setInputJobProcess(new InputBinding(jobClass, this.schedPolicy, DropStrategy.WaitingQueue));
         if (distribution.isImmediate()) {
-            this.serviceProcesses.add(new ServiceProcess(jobClass, ServiceStrategy.LI, new Immediate()));
+            this.serviceProcesses.add(new ServiceBinding(jobClass, ServiceStrategy.LI, new Immediate()));
         } else {
-            this.serviceProcesses.add(new ServiceProcess(jobClass, ServiceStrategy.LI, distribution));
+            this.serviceProcesses.add(new ServiceBinding(jobClass, ServiceStrategy.LI, distribution));
         }
 
         this.classCap.put(jobClass, Double.POSITIVE_INFINITY);
@@ -153,7 +153,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
 
     public double minRate() {
         double acc = Double.POSITIVE_INFINITY;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             double dRate = serviceProcess.getDistribution().getRate();
             if (dRate != 0) {
                 acc = Math.min(acc, dRate);
@@ -163,7 +163,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
     }
     public double maxRate() {
         double acc = 0;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             if (serviceProcess.getDistribution().getRate() == Double.POSITIVE_INFINITY) {
                 continue;
             }
@@ -173,7 +173,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
     }
     public double avgRate() {
         double acc = 0;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             double accVal = serviceProcess.getDistribution().getRate();
             if ((accVal == Double.POSITIVE_INFINITY) || (accVal == 0)) {
                 continue;
@@ -185,7 +185,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
 
     public int rateCt() {
         int acc = 0;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             double accVal = serviceProcess.getDistribution().getRate();
             if ((accVal == Double.POSITIVE_INFINITY) || (accVal == 0)) {
                 continue;

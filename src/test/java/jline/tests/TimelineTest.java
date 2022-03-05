@@ -5,6 +5,8 @@ import jline.lang.constant.SchedStrategy;
 
 import static org.junit.jupiter.api.Assertions.*;
 import jline.solvers.ssa.*;
+import jline.solvers.ssa.state.StateMatrix;
+import jline.solvers.ssa.strategies.CutoffStrategy;
 
 class TimelineTest {
     Timeline timeline;

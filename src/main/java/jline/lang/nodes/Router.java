@@ -41,7 +41,7 @@ public class Router extends StatefulNode implements HasSchedStrategy, Serializab
     }
 
     public void setService(JobClass jobClass, Distribution distribution) {
-        this.server.setServiceProcesses(new ServiceProcess(jobClass, ServiceStrategy.LI, distribution));
+        this.server.setServiceProcesses(new ServiceBinding(jobClass, ServiceStrategy.LI, distribution));
     }
 
     public void setSchedPolicy(SchedStrategyType schedPolicy) {

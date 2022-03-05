@@ -1,4 +1,4 @@
-package jline.lang;
+package jline.lang.constant;
 
 public enum JobClassType {
     Open, Closed

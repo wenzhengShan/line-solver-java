@@ -8,6 +8,8 @@ import jline.lang.*;
 
 import java.util.Random;
 import jline.solvers.ssa.*;
+import jline.solvers.ssa.events.Event;
+import jline.solvers.ssa.state.StateMatrix;
 
 public class DummyEvent extends Event {
     private Distribution distribution;

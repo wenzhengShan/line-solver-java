@@ -1,8 +1,7 @@
 package jline.lang.nodes;
-import jline.solvers.ssa.ArrivalEvent;
-
 import java.io.Serializable;
 import jline.lang.*;
+import jline.solvers.ssa.events.ArrivalEvent;
 
 public class StatefulNode extends Node implements Serializable {
     private Integer statefulIndex;

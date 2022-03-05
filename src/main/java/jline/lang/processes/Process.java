@@ -1,10 +1,10 @@
 package jline.lang.processes;
 
-import jline.lang.Param;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import jline.util.Param;
 
 public class Process implements Serializable {
     protected String name;

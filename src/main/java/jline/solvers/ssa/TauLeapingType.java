@@ -1,5 +1,8 @@
 package jline.solvers.ssa;
 
+import jline.solvers.ssa.strategies.TauLeapingOrderStrategy;
+import jline.solvers.ssa.strategies.TauLeapingStateStrategy;
+
 public class TauLeapingType {
     protected TauLeapingVarType varType;
     protected TauLeapingOrderStrategy orderStrategy;

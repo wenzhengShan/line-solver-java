@@ -16,7 +16,7 @@ public class Server extends ServiceSection implements Serializable {
 
     private void initServers(List<JobClass> jobClasses) {
         for (JobClass jobClass : jobClasses) {
-            this.serviceProcesses.put(jobClass, new ServiceProcess(jobClass, ServiceStrategy.LI, new Exp(0)));
+            this.serviceProcesses.put(jobClass, new ServiceBinding(jobClass, ServiceStrategy.LI, new Exp(0)));
         }
     }
 

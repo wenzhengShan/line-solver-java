@@ -8,6 +8,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import jline.solvers.ssa.*;
+import jline.solvers.ssa.state.PhaseList;
 
 class PhaseListTest {
     private PhaseList phaseList;

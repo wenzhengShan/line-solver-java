@@ -12,7 +12,7 @@ import jline.lang.nodes.*;
 import jline.lang.sections.*;
 
 public class Source extends Station implements HasSchedStrategy, Serializable {
-    protected List<ServiceProcess> serviceProcesses;
+    protected List<ServiceBinding> serviceProcesses;
     protected SchedStrategy schedStrategy;
 
     public Source(String name) {
@@ -29,7 +29,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
         this.schedStrategy = SchedStrategy.EXT;
         this.setModel(model);
         this.model.addNode(this);
-        this.serviceProcesses = new ArrayList<ServiceProcess>();
+        this.serviceProcesses = new ArrayList<ServiceBinding>();
 
         for (JobClass jobClass : jobClasses) {
             this.classCap.put(jobClass, Double.POSITIVE_INFINITY);
@@ -39,7 +39,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
     }
 
     public void setArrivalDistribution(JobClass jobClass, Distribution distribution) {
-        ServiceProcess arrivalProcess = new ServiceProcess(jobClass, ServiceStrategy.LI, distribution);
+        ServiceBinding arrivalProcess = new ServiceBinding(jobClass, ServiceStrategy.LI, distribution);
         this.input.setServiceProcess(arrivalProcess);
         this.setServiceProcess(arrivalProcess);
         if (distribution == null) {
@@ -50,7 +50,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
     }
 
     protected void removeServiceProcess(JobClass jobClass) {
-        Iterator<ServiceProcess> serviceProcessIterator = this.serviceProcesses.iterator();
+        Iterator<ServiceBinding> serviceProcessIterator = this.serviceProcesses.iterator();
         while (serviceProcessIterator.hasNext()) {
             if (serviceProcessIterator.next().getJobClass() == jobClass) {
                 serviceProcessIterator.remove();
@@ -58,13 +58,13 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
         }
     }
 
-    public void setServiceProcess(ServiceProcess arrivalProcess) {
+    public void setServiceProcess(ServiceBinding arrivalProcess) {
         removeServiceProcess(arrivalProcess.getJobClass());
         serviceProcesses.add(arrivalProcess);
     }
 
     public final Distribution getServiceProcess(JobClass jobClass) {
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             if (serviceProcess.getJobClass() == jobClass) {
                 return serviceProcess.getDistribution();
             }
@@ -74,7 +74,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
     }
 
     public Distribution getArrivalDistribution(JobClass jobClass) {
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             if (serviceProcess.getJobClass() == jobClass) {
                 return serviceProcess.getDistribution();
             }
@@ -99,7 +99,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
 
     public double minRate() {
         double acc = Double.POSITIVE_INFINITY;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             double dRate = serviceProcess.getDistribution().getRate();
             if (dRate != 0) {
                 acc = Math.min(acc, dRate);
@@ -109,7 +109,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
     }
     public double maxRate() {
         double acc = 0;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             if (serviceProcess.getDistribution().getRate() == Double.POSITIVE_INFINITY) {
                 continue;
             }
@@ -119,7 +119,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
     }
     public double avgRate() {
         double acc = 0;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             double accVal = serviceProcess.getDistribution().getRate();
             if ((accVal == Double.POSITIVE_INFINITY) || (accVal == 0)) {
                 continue;
@@ -131,7 +131,7 @@ public class Source extends Station implements HasSchedStrategy, Serializable {
 
     public int rateCt() {
         int acc = 0;
-        for (ServiceProcess serviceProcess : this.serviceProcesses) {
+        for (ServiceBinding serviceProcess : this.serviceProcesses) {
             double accVal = serviceProcess.getDistribution().getRate();
             if ((accVal == Double.POSITIVE_INFINITY) || (accVal == 0)) {
                 continue;

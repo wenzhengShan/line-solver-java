@@ -1,8 +1,8 @@
 package jline.lang.nodes;
 
-import jline.solvers.ssa.SinkArrivalEvent;
 import jline.lang.sections.ServiceSection;
-import jline.solvers.ssa.ArrivalEvent;
+import jline.solvers.ssa.events.ArrivalEvent;
+import jline.solvers.ssa.events.SinkArrivalEvent;
 
 import java.io.Serializable;
 import jline.lang.*;
@@ -10,7 +10,7 @@ import jline.lang.constant.SchedStrategy;
 
 public class Sink extends Node implements Serializable {
     protected SchedStrategy schedStrategy;
-    protected jline.solvers.ssa.ArrivalEvent arrivalEvent;
+    protected jline.solvers.ssa.events.ArrivalEvent arrivalEvent;
 
     public Sink(Network model, String name) {
         super(name);

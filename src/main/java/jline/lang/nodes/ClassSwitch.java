@@ -1,7 +1,7 @@
 package jline.lang.nodes;
 
-import jline.solvers.ssa.ArrivalEvent;
-import jline.solvers.ssa.ClassSwitchArrivalEvent;
+import jline.solvers.ssa.events.ArrivalEvent;
+import jline.solvers.ssa.events.ClassSwitchArrivalEvent;
 
 import java.io.Serializable;
 import java.util.List;

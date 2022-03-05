@@ -6,6 +6,11 @@ import jline.lang.constant.SchedStrategy;
 import jline.lang.nodes.Node;
 import jline.lang.nodes.StatefulNode;
 import jline.lang.nodes.Station;
+import jline.solvers.ssa.events.DepartureEvent;
+import jline.solvers.ssa.events.Event;
+import jline.solvers.ssa.events.EventStack;
+import jline.solvers.ssa.state.StateMatrix;
+import jline.solvers.ssa.strategies.TauLeapingStateStrategy;
 import jline.util.Interval;
 
 import java.util.*;
