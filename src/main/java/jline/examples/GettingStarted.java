@@ -1,5 +1,6 @@
 package jline.examples;
 
+import jline.lang.nodes.Delay;
 import jline.solvers.ssa.*;
 import jline.lang.*;
 import jline.lang.constant.SchedStrategy;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 public class GettingStarted {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        Network model = GettingStarted.ex7();
+        Network model = GettingStarted.ex8();
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime);
@@ -173,6 +174,27 @@ public class GettingStarted {
 
         model.link(model.serialRouting(source,queue,sink));
 
+        return model;
+    }
+
+    public static Network ex8() {
+        Network model = new Network("2CDSDC");
+        Delay Node1 = new Delay(model, "Delay");
+        Queue Node2 = new Queue(model, "Queue1", SchedStrategy.FCFS);
+        ClosedClass closedClass1 = new ClosedClass(model, "Closed 1", 10, Node1,0);
+
+
+        Queue queue = new Queue(model, "Queue", SchedStrategy.FCFS);
+        Node1.setService(closedClass1, new Exp(1));
+        Node2.setService(closedClass1, new Exp(0.6666667));
+
+        RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(closedClass1),
+                Arrays.asList(Node1, Node2));
+        routingMatrix.addConnection(Node1, Node1, closedClass1,0.7);
+        routingMatrix.addConnection(Node1, Node2, closedClass1,0.3);
+        routingMatrix.addConnection(Node2, Node1, closedClass1,1.0);
+        routingMatrix.addConnection(Node2, Node2, closedClass1,0.0);
+        model.link(routingMatrix);
         return model;
     }
 }

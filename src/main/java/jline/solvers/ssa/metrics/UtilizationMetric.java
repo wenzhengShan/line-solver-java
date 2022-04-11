@@ -5,9 +5,18 @@ import jline.solvers.ssa.state.StateMatrix;
 import jline.util.Pair;
 
 public class UtilizationMetric extends Metric<Double, Double> {
+    protected boolean isDelay;
+
+    public UtilizationMetric(int nodeIdx, int classIdx, int nServers, boolean record, boolean isDelay) {
+        super("Utilization", 0.0, 0.0, record, nodeIdx, classIdx, nServers);
+        this.useMatrix = true;
+        this.isDelay = isDelay;
+    }
+
     public UtilizationMetric(int nodeIdx, int classIdx, int nServers, boolean record) {
         super("Utilization", 0.0, 0.0, record, nodeIdx, classIdx, nServers);
         this.useMatrix = true;
+        this.isDelay = false;
     }
 
     public UtilizationMetric(int nodeIdx, int classIdx, int nServers) {
@@ -51,10 +60,16 @@ public class UtilizationMetric extends Metric<Double, Double> {
 
     public void fromStateMatrix(double t, StateMatrix stateMatrix) {
         double inProcess = stateMatrix.inProcess(this.nodeIdx, this.classIdx);
-        double utilization = inProcess/nServers;
-        if (nServers == 0) {
+        double utilization;
+
+        if (this.isDelay) {
+            utilization = inProcess;
+        } else if (nServers == 0) {
             return;
+        } else {
+            utilization = inProcess/nServers;
         }
+
         if (utilization == this.metricValue) {
             return;
         }

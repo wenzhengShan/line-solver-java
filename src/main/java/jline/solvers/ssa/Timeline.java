@@ -80,11 +80,11 @@ public class Timeline {
             this.totalClassMetrics[i] = new TotalClassMetric(i);
         }
 
-        // build all 5 events. In the future, it might be desireable to allow configuration of this
+        // Build all 5 metrics. In the future, it might be desirable to allow configuration of this
         for (int i = 0; i < this.nStateful; i++) {
             for (int j = 0; j < this.nClasses; j++)  {
                 this.metrics[i][j][0] = new QueueLengthMetric(i,j, this.nServers[i], recordMetrics);
-                this.metrics[i][j][1] = new UtilizationMetric(i,j, this.nServers[i], recordMetrics);
+                this.metrics[i][j][1] = new UtilizationMetric(i,j, this.nServers[i], recordMetrics, networkStruct.isDelay[i]);
                 this.metrics[i][j][2] = new ResponseTimeMetric(i,j, this.nServers[i], schedStrategies[i], recordMetrics);
                 this.metrics[i][j][3] = new ResidenceTimeMetric(i,j, this.nServers[i], schedStrategies[i], recordMetrics, totalClassMetrics[j]);
                 this.metrics[i][j][4] = new ThroughputMetric(i,j, this.nServers[i], recordMetrics);
