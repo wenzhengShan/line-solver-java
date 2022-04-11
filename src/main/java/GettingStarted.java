@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class GettingStarted {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        Network model = GettingStarted.ex1();
+        Network model = GettingStarted.ex7();
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime);
@@ -22,8 +22,10 @@ public class GettingStarted {
                 TauLeapingStateStrategy.Cutoff,
                 0.1
         ));*/
-        solverSSA.solve().printSummary(model);
-        System.out.format("Total time: %d ms", duration/1000000);
+        Timeline solve_soln = solverSSA.solve();
+        System.out.println("Your simulation has finished.");
+        solve_soln.printSummary(model);
+        System.out.format("%d samples collected in %d ms", 100000, duration/1000000);
     }
 
     public static Network ex1() {
@@ -149,8 +151,8 @@ public class GettingStarted {
         /* A queue with two different open classes
          */
         Network model = new Network("2CDSDC");
-        OpenClass openClass1 = new OpenClass(model, "Open Class 1");
-        OpenClass openClass2 = new OpenClass(model, "Open Class 2");
+        OpenClass openClass1 = new OpenClass(model, "Open 1");
+        OpenClass openClass2 = new OpenClass(model, "Open 2");
         Source source = new Source(model,"Source");
         source.setArrivalDistribution(openClass1, new Exp(8));
         source.setArrivalDistribution(openClass2, new Exp(5));
