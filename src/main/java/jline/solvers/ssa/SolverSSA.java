@@ -198,7 +198,7 @@ public class SolverSSA {
                 while (jobClassIter.hasNext()) {
                     JobClass jobClass = jobClassIter.next();
                     int jobClassIdx = jobClass.getJobClassIdx();
-                    if (network.getVisitCount(node, jobClass) == 0) {
+                    if (network.getClassLinks(node, jobClass) == 0) {
                         this.networkStruct.capacities[nodeIdx][jobClassIdx] = 0;
                     } else {
                         double jobCap = jobClass.getNumberOfJobs();

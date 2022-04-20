@@ -21,7 +21,7 @@ public class Network extends Model implements Serializable {
     private List<JobClass> jobClasses;
 
     // caches
-    private Map<Node, Map<JobClass, List<Node>>> visits;
+    private Map<Node, Map<JobClass, List<Node>>> classLinks;
 
     public Network(String modelName) {
         super(modelName);
@@ -32,7 +32,7 @@ public class Network extends Model implements Serializable {
         this.nodes = new ArrayList<Node>();
         this.jobClasses = new ArrayList<JobClass>();
 
-        this.visits = new HashMap<Node, Map<JobClass, List<Node>>>();
+        this.classLinks = new HashMap<Node, Map<JobClass, List<Node>>>();
     }
 
     public void setDoChecks(boolean doChecks) {
@@ -290,18 +290,18 @@ public class Network extends Model implements Serializable {
     }
 
     public void clearCaches() {
-        this.visits = new HashMap<Node, Map<JobClass, List<Node>>>();
+        this.classLinks = new HashMap<Node, Map<JobClass, List<Node>>>();
     }
 
-    protected void generateVisits() {
-        this.visits = new HashMap<Node, Map<JobClass, List<Node>>>();
+    protected void generateClassLinks() {
+        this.classLinks = new HashMap<Node, Map<JobClass, List<Node>>>();
         for (Node node : this.nodes) {
             Map<JobClass, List<Node>> nodeMap = new HashMap<JobClass, List<Node>>();
 
             for (JobClass jobClass : this.jobClasses) {
                 nodeMap.put(jobClass, new ArrayList<Node>());
             }
-            visits.put(node, nodeMap);
+            classLinks.put(node, nodeMap);
         }
 
         for (Node node : this.nodes) {
@@ -311,16 +311,16 @@ public class Network extends Model implements Serializable {
                     continue;
                 }
                 JobClass jobClass = outputStrategy.getJobClass();
-                this.visits.get(destNode).get(jobClass).add(node);
+                this.classLinks.get(destNode).get(jobClass).add(node);
             }
         }
     }
 
-    public int getVisitCount(Node node, JobClass jobClass) {
-        if (this.visits.isEmpty()) {
-            this.generateVisits();
+    public int getClassLinks(Node node, JobClass jobClass) {
+        if (this.classLinks.isEmpty()) {
+            this.generateClassLinks();
         }
-        return this.visits.get(node).get(jobClass).size();
+        return this.classLinks.get(node).get(jobClass).size();
     }
 
     public double minRate() {

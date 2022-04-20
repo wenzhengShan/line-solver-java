@@ -23,7 +23,8 @@ public class GettingStarted {
         long duration = (endTime - startTime);
         SolverSSA solverSSA = new SolverSSA();
         solverSSA.compile(model);
-        solverSSA.setOptions().samples(100000).seed(50);
+        solverSSA.setOptions().samples(5000);//.seed(50);
+        solverSSA.setOptions().R5(17);
         // Uncomment below to test Tau Leaping
         /*solverSSA.setOptions().configureTauLeap(new TauLeapingType(
                 TauLeapingVarType.Poisson,
@@ -34,7 +35,7 @@ public class GettingStarted {
         Timeline solve_soln = solverSSA.solve();
         System.out.println("Your simulation has finished.");
         solve_soln.printSummary(model);
-        System.out.format("%d samples collected in %d ms", 100000, duration/1000000);
+        //System.out.format("%d samples collected in %d ms", 100000, duration/1000000);
     }
 
     public static Network ex1() {
@@ -183,8 +184,6 @@ public class GettingStarted {
         Queue Node2 = new Queue(model, "Queue1", SchedStrategy.FCFS);
         ClosedClass closedClass1 = new ClosedClass(model, "Closed 1", 10, Node1,0);
 
-
-        Queue queue = new Queue(model, "Queue", SchedStrategy.FCFS);
         Node1.setService(closedClass1, new Exp(1));
         Node2.setService(closedClass1, new Exp(0.6666667));
 
