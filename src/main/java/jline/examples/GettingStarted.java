@@ -1,6 +1,5 @@
 package jline.examples;
 
-import jline.lang.nodes.Delay;
 import jline.solvers.ssa.*;
 import jline.lang.*;
 import jline.lang.constant.SchedStrategy;
@@ -9,8 +8,6 @@ import jline.lang.distributions.Exp;
 import jline.lang.nodes.Queue;
 import jline.lang.nodes.Sink;
 import jline.lang.nodes.Source;
-
-import java.util.Arrays;
 
 import java.util.Arrays;
 
@@ -23,7 +20,7 @@ public class GettingStarted {
         long duration = (endTime - startTime);
         SolverSSA solverSSA = new SolverSSA();
         solverSSA.compile(model);
-        solverSSA.setOptions().samples(5000);//.seed(50);
+        solverSSA.setOptions().samples(5000).seed(50);
         solverSSA.setOptions().R5(17);
         // Uncomment below to test Tau Leaping
         /*solverSSA.setOptions().configureTauLeap(new TauLeapingType(
