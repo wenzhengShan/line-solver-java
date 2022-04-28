@@ -1,5 +1,6 @@
 package jline.examples;
 
+import jline.lang.nodes.Delay;
 import jline.solvers.ssa.*;
 import jline.lang.*;
 import jline.lang.constant.SchedStrategy;
