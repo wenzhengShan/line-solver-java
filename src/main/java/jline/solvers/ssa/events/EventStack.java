@@ -325,9 +325,9 @@ public class EventStack {
             this.eventList.add(first);
         }
 
-        if (stateStrategy == TauLeapingStateStrategy.CycleCutoff) {
+        /*if (stateStrategy == TauLeapingStateStrategy.CycleCutoff) {
             stateMatrix.allowIllegalStates();
-        } else if ((stateStrategy == TauLeapingStateStrategy.TimeWarp) || (stateStrategy == TauLeapingStateStrategy.TauTimeWarp)) {
+        } else*/ if ((stateStrategy == TauLeapingStateStrategy.TimeWarp) || (stateStrategy == TauLeapingStateStrategy.TauTimeWarp)) {
             stateMatrix.cacheState();
         }
 
@@ -417,9 +417,9 @@ public class EventStack {
 
         }
 
-        if (stateStrategy == TauLeapingStateStrategy.CycleCutoff) {
+        /*if (stateStrategy == TauLeapingStateStrategy.CycleCutoff) {
             stateMatrix.forbidIllegalStates();
-        }
+        }*/
 
         timeline.recordCache();
 
