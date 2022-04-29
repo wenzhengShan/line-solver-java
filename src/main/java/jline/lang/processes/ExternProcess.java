@@ -1,11 +1,10 @@
 package jline.lang.processes;
 
+import jline.lang.controllers.RateController;
 import jline.lang.distributions.MarkovianDistribution;
-import jline.util.Cdf;
 import jline.util.Interval;
 
 import java.util.List;
-import java.util.Random;
 
 public class ExternProcess extends MarkovianDistribution {
     protected RateController rateController;

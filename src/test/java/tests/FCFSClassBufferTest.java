@@ -39,8 +39,6 @@ class FCFSClassBufferTest {
             this.classBuffer.addNToBuffer(classIdx, nToAdd);
         }
 
-        //Collections.reverse(addList);
-
         for (Pair<Integer, Integer> curPair : addList) {
             int classIdx = curPair.getLeft();
             int nAdded = curPair.getRight();

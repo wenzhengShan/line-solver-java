@@ -1,4 +1,4 @@
-package jline.solvers.ssa.state;
+package tests;
 
 import org.junit.jupiter.api.Test;
 

@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class GettingStarted {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        Network model = GettingStarted.ex8();
+        Network model = GettingStarted.ex4();
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime);
@@ -96,11 +96,11 @@ public class GettingStarted {
         OpenClass openClass = new OpenClass(model, "Open Class");
         Source source = new Source(model,"Source");
         source.setArrivalDistribution(openClass, new Exp(10));
-        Queue queue1 = new Queue(model, "Queue1", SchedStrategy.FCFS);
+        Queue queue1 = new Queue(model, "Queue1", SchedStrategy.SIRO);
         queue1.setService(openClass, new Erlang(8, 2));
-        Queue queue2 = new Queue(model, "Queue2", SchedStrategy.FCFS);
+        Queue queue2 = new Queue(model, "Queue2", SchedStrategy.SIRO);
         queue2.setService(openClass, new Erlang(11,3));
-        Queue queue3 = new Queue(model, "Queue3", SchedStrategy.FCFS);
+        Queue queue3 = new Queue(model, "Queue3", SchedStrategy.SIRO);
         queue3.setService(openClass, new Erlang(16,4));
         Sink sink = new Sink(model, "Sink");
         
