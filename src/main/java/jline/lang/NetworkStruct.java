@@ -18,4 +18,5 @@ public class NetworkStruct implements Serializable {
     public String[] classnames;
     public String[] nodenames;
     public int[] refstat;
+    public boolean[][] connections;
 }

@@ -8,6 +8,7 @@ import jline.lang.nodes.Node;
 
 public class RoutingMatrix implements Serializable {
     private List<List<List<Double>>> routingArray;
+    private boolean[][] connections;
     private List<JobClass> jobClasses;
     private List<Node> nodes;
     private Map<JobClass, Integer> classIndexMap;
@@ -33,6 +34,9 @@ public class RoutingMatrix implements Serializable {
         this.jobClasses = new ArrayList<JobClass>();
         this.nodes = new ArrayList<Node>();
         this.hasUnappliedConnections = false;
+        
+        int I = this.nodes.size();
+        connections = new boolean[I][I];
     }
 
     public RoutingMatrix(List<JobClass> jobClasses, List<Node> nodes) {
@@ -58,6 +62,9 @@ public class RoutingMatrix implements Serializable {
         for (int j = 0; j < this.nodes.size(); j++) {
             this.nodeIndexMap.put(this.nodes.get(j), j);
         }
+        
+        int I = this.nodes.size();
+        connections = new boolean[I][I];
     }
 
 
@@ -101,6 +108,15 @@ public class RoutingMatrix implements Serializable {
         }
 
         this.nodeIndexMap.put(node, nodeIdx);
+        
+        int I = this.nodes.size();
+        boolean[][] newConnections = new boolean[I][I];
+        for(int i = 0; i < I-1; i++) {
+        	for(int j = 0; j < I-1; j++) {
+        		newConnections[i][j] = connections[i][j];
+        	}
+        }
+        this.connections = newConnections;
     }
 
 
@@ -112,6 +128,8 @@ public class RoutingMatrix implements Serializable {
 
         int destIndex = this.getNodeIndex(destNode);
         sourceRouting.set(destIndex,probability);
+        
+        this.connections[this.getNodeIndex(sourceNode)][destIndex] = true;
     }
 
     private void resolveUnappliedConnections() {
@@ -172,5 +190,9 @@ public class RoutingMatrix implements Serializable {
                 }
             }
         }
+    }
+    
+    public boolean[][] getConnections(){
+    	return this.connections;
     }
 }

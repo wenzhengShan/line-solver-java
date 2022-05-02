@@ -20,6 +20,7 @@ public class Network extends Model implements Serializable {
 
     private List<Node> nodes;
     private List<JobClass> jobClasses;
+    private List<Station> stations;
     
     private boolean hasStruct;
     private NetworkStruct sn;
@@ -35,6 +36,7 @@ public class Network extends Model implements Serializable {
 
         this.nodes = new ArrayList<Node>();
         this.jobClasses = new ArrayList<JobClass>();
+        this.stations = new ArrayList<Station>();
 
         this.classLinks = new HashMap<Node, Map<JobClass, List<Node>>>();
         
@@ -112,6 +114,8 @@ public class Network extends Model implements Serializable {
 
     public void addNode(Node node) {
         nodes.add(node);
+        if (node instanceof Station)
+        	stations.add((Station) node);
     }
 
     public void setInitialized(boolean initStatus) {
@@ -253,6 +257,7 @@ public class Network extends Model implements Serializable {
                 routing: row: source, column: dest
          */
 
+    	sn.connections = routing.getConnections();
         routing.setRouting(this);
     }
 
@@ -409,8 +414,11 @@ public class Network extends Model implements Serializable {
     		classnames = getClassNames();
     		nodenames = getNodeNames();
     		refstat = getReferenceStations();
-    		System.out.println();
     	}
+    	
+    	boolean[][] connections = sn.connections;
+    	double[] njobs = getNumberOfJobs();
+    	int[] numservers = getStationServers();
     }  
     
     public NodeType[] getNodeTypes() {
@@ -505,5 +513,26 @@ public class Network extends Model implements Serializable {
         }
 
         return -1;
+    }
+    
+    public double[] getNumberOfJobs() {
+    	int K = getNumberOfClasses();
+    	double[] njobs = new double[K];
+    	for(int i = 0; i < K; i++) {
+    		if (jobClasses.get(i).type == JobClassType.Open)
+    			njobs[i] = Double.POSITIVE_INFINITY;
+    		else if (jobClasses.get(i).type == JobClassType.Closed)
+    			njobs[i] = jobClasses.get(i).getNumberOfJobs();
+    	}
+    	return njobs;
+    }
+
+    public int[] getStationServers() {
+    	int I = stations.size();
+    	int[] numservers = new int[I];
+    	for(int i = 0; i < I; i++)
+    		numservers[i] = stations.get(i).getNumberOfServers();
+    	
+    	return numservers;
     }
 }

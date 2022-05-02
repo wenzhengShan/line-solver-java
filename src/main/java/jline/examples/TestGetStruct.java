@@ -1,8 +1,11 @@
 package jline.examples;
 
+import java.util.Arrays;
+
 import jline.lang.ClosedClass;
 import jline.lang.Network;
 import jline.lang.OpenClass;
+import jline.lang.RoutingMatrix;
 import jline.lang.constant.SchedStrategy;
 import jline.lang.distributions.Exp;
 import jline.lang.nodes.Queue;
@@ -20,9 +23,20 @@ public class TestGetStruct {
 		
 		OpenClass openClass = new OpenClass(model, "openclass1");
 		ClosedClass class2 = new ClosedClass(model, "closedclass1", 5, queue1);
-		ClosedClass class3 = new ClosedClass(model, "closedclass2", 5, queue1);
+		ClosedClass class3 = new ClosedClass(model, "closedclass2", 10, queue1);
 		
-		model.link(model.serialRouting(source,queue1,queue2,sink));
+		
+		RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(openClass, class2, class3),
+                Arrays.asList(source, queue1, queue2, sink));
+        routingMatrix.addConnection(source, queue1);
+        routingMatrix.addConnection(queue1, sink);
+        routingMatrix.addConnection(source, queue2);
+        routingMatrix.addConnection(queue2, sink);
+        routingMatrix.addConnection(queue1, queue2);
+        routingMatrix.addConnection(queue2, queue1);
+        model.link(routingMatrix);
+        
+//		model.link(model.serialRouting(source,queue1,queue2,sink));
 		
 		model.getStruct();
 	}
