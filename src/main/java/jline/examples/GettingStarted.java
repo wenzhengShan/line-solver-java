@@ -1,5 +1,6 @@
 package jline.examples;
 
+import jline.lang.nodes.Delay;
 import jline.solvers.ssa.*;
 import jline.lang.*;
 import jline.lang.constant.SchedStrategy;
@@ -14,13 +15,14 @@ import java.util.Arrays;
 public class GettingStarted {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        Network model = GettingStarted.ex1();
+        Network model = GettingStarted.ex4();
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime);
         SolverSSA solverSSA = new SolverSSA();
         solverSSA.compile(model);
-        solverSSA.setOptions().samples(100000).seed(50);
+        solverSSA.setOptions().samples(5000).seed(50);
+        solverSSA.setOptions().R5(17);
         // Uncomment below to test Tau Leaping
         /*solverSSA.setOptions().configureTauLeap(new TauLeapingType(
                 TauLeapingVarType.Poisson,
@@ -28,8 +30,10 @@ public class GettingStarted {
                 TauLeapingStateStrategy.Cutoff,
                 0.1
         ));*/
-        solverSSA.solve().printSummary(model);
-        System.out.format("Total time: %d ms", duration/1000000);
+        Timeline solve_soln = solverSSA.solve();
+        System.out.println("Your simulation has finished.");
+        solve_soln.printSummary(model);
+        //System.out.format("%d samples collected in %d ms", 100000, duration/1000000);
     }
 
     public static Network ex1() {
@@ -92,11 +96,11 @@ public class GettingStarted {
         OpenClass openClass = new OpenClass(model, "Open Class");
         Source source = new Source(model,"Source");
         source.setArrivalDistribution(openClass, new Exp(10));
-        Queue queue1 = new Queue(model, "Queue1", SchedStrategy.FCFS);
+        Queue queue1 = new Queue(model, "Queue1", SchedStrategy.SIRO);
         queue1.setService(openClass, new Erlang(8, 2));
-        Queue queue2 = new Queue(model, "Queue2", SchedStrategy.FCFS);
+        Queue queue2 = new Queue(model, "Queue2", SchedStrategy.SIRO);
         queue2.setService(openClass, new Erlang(11,3));
-        Queue queue3 = new Queue(model, "Queue3", SchedStrategy.FCFS);
+        Queue queue3 = new Queue(model, "Queue3", SchedStrategy.SIRO);
         queue3.setService(openClass, new Erlang(16,4));
         Sink sink = new Sink(model, "Sink");
         
@@ -155,8 +159,8 @@ public class GettingStarted {
         /* A queue with two different open classes
          */
         Network model = new Network("2CDSDC");
-        OpenClass openClass1 = new OpenClass(model, "Open Class 1");
-        OpenClass openClass2 = new OpenClass(model, "Open Class 2");
+        OpenClass openClass1 = new OpenClass(model, "Open 1");
+        OpenClass openClass2 = new OpenClass(model, "Open 2");
         Source source = new Source(model,"Source");
         source.setArrivalDistribution(openClass1, new Exp(8));
         source.setArrivalDistribution(openClass2, new Exp(5));
@@ -169,6 +173,25 @@ public class GettingStarted {
 
         model.link(model.serialRouting(source,queue,sink));
 
+        return model;
+    }
+
+    public static Network ex8() {
+        Network model = new Network("2CDSDC");
+        Delay Node1 = new Delay(model, "Delay");
+        Queue Node2 = new Queue(model, "Queue1", SchedStrategy.FCFS);
+        ClosedClass closedClass1 = new ClosedClass(model, "Closed 1", 10, Node1,0);
+
+        Node1.setService(closedClass1, new Exp(1));
+        Node2.setService(closedClass1, new Exp(0.6666667));
+
+        RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(closedClass1),
+                Arrays.asList(Node1, Node2));
+        routingMatrix.addConnection(Node1, Node1, closedClass1,0.7);
+        routingMatrix.addConnection(Node1, Node2, closedClass1,0.3);
+        routingMatrix.addConnection(Node2, Node1, closedClass1,1.0);
+        routingMatrix.addConnection(Node2, Node2, closedClass1,0.0);
+        model.link(routingMatrix);
         return model;
     }
 }

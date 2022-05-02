@@ -3,6 +3,7 @@ package jline.solvers.ssa;
 import jline.lang.*;
 import jline.lang.constant.DropStrategy;
 import jline.lang.constant.SchedStrategy;
+import jline.lang.nodes.Delay;
 import jline.lang.nodes.Node;
 import jline.lang.nodes.StatefulNode;
 import jline.lang.nodes.Station;
@@ -173,6 +174,7 @@ public class SolverSSA {
 
             this.networkStruct.numberOfServers = new int[this.networkStruct.nStateful];
             this.networkStruct.schedStrategies = new SchedStrategy[this.networkStruct.nStateful];
+            this.networkStruct.isDelay = new boolean[this.networkStruct.nStateful];
 
 
             // loop through each node and add active events to the eventStack
@@ -183,12 +185,20 @@ public class SolverSSA {
                 if (!(node instanceof StatefulNode)) {
                     continue;
                 }
+
                 nodeIdx++;
                 Iterator<JobClass> jobClassIter = network.getClasses().listIterator();
+
+                if (node instanceof Delay) {
+                    this.networkStruct.isDelay[nodeIdx] = true;
+                } else {
+                    this.networkStruct.isDelay[nodeIdx] = false;
+                }
+
                 while (jobClassIter.hasNext()) {
                     JobClass jobClass = jobClassIter.next();
                     int jobClassIdx = jobClass.getJobClassIdx();
-                    if (network.getVisitCount(node, jobClass) == 0) {
+                    if (network.getClassLinks(node, jobClass) == 0) {
                         this.networkStruct.capacities[nodeIdx][jobClassIdx] = 0;
                     } else {
                         double jobCap = jobClass.getNumberOfJobs();

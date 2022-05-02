@@ -12,4 +12,5 @@ public class NetworkStruct implements Serializable {
     public int[][] capacities;
     public int[] nodeCapacity;
     public int[] numberOfServers;
+    public boolean[] isDelay;
 }

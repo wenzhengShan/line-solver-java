@@ -29,8 +29,8 @@ public class StateMatrix {
     protected int[][] stateCache;
     protected StateCell[] bufferCache;
 
-    // used to temporarily allow illegal states, e.g. negative jobs at a station or more jobs than capacity.
-    protected boolean allowIllegalStates;
+    // used to temporarily allow illegal states, e.g. negative jobs at a station or more jobs than capacity. - REMOVED (MS)
+    //protected boolean allowIllegalStates;
 
     private static int[] defaultNodeCapacity(int nStateful, int nClasses, int[][] capacities) {
         // initialize node capacities
@@ -52,7 +52,7 @@ public class StateMatrix {
         this.nClasses = networkStruct.nClasses;
         this.capacities = networkStruct.capacities;
         this.nodeCapacity = networkStruct.nodeCapacity;
-        this.allowIllegalStates = false;
+        //this.allowIllegalStates = false;
 
         this.state = new int[this.nStateful][this.nClasses];
         for (int i = 0; i < this.nStateful; i++) {
@@ -102,11 +102,11 @@ public class StateMatrix {
     public boolean stateArrival(int nodeIdx, int classIdx) {
         // arrive 1 instance of [class] at [node]
         // returns: true if successful, false otherwise
-        if (state[nodeIdx][classIdx] == capacities[nodeIdx][classIdx]) {
+        /*if (state[nodeIdx][classIdx] == capacities[nodeIdx][classIdx]) {
             if (!this.allowIllegalStates) {
                 return false;
             }
-        }
+        }*/
         this.addToBuffer(nodeIdx, classIdx);
         this.state[nodeIdx][classIdx]++;
 
@@ -121,9 +121,9 @@ public class StateMatrix {
         int curState = this.state[nodeIdx][classIdx];
         int maxState = this.capacities[nodeIdx][classIdx];
 
-        if (this.allowIllegalStates) {
+        /*if (this.allowIllegalStates) {
             maxState = Integer.MAX_VALUE;
-        }
+        }*/
 
         int nToApply = Math.min(n, maxState - curState);
         int rem = Math.min(n - nToApply, n);
@@ -136,7 +136,7 @@ public class StateMatrix {
     public boolean stateDeparture(int nodeIdx, int classIdx) {
         // depart 1 instance of [class] from [node]
         // returns: true if successful departure, false otherwise
-        if ((state[nodeIdx][classIdx] == 0) && (!this.allowIllegalStates)) {
+        if ((state[nodeIdx][classIdx] == 0)/* && (!this.allowIllegalStates)*/) {
             return false;
         }
 
@@ -151,9 +151,9 @@ public class StateMatrix {
         int curState = this.state[nodeIdx][classIdx];
         int nToApply = Math.min(curState, n);
 
-        if (this.allowIllegalStates) {
+        /*if (this.allowIllegalStates) {
             nToApply = n;
-        }
+        }*/
 
         this.buffers[nodeIdx].removeNClass(nToApply, classIdx);
         this.state[nodeIdx][classIdx] -= nToApply;
@@ -334,7 +334,7 @@ public class StateMatrix {
         return this.phaseTracker.get(phaseEvent).getListSize();
     }
 
-    public void allowIllegalStates() {
+    /*public void allowIllegalStates() {
         this.allowIllegalStates = true;
     }
 
@@ -353,7 +353,7 @@ public class StateMatrix {
                 this.state[i][j] = Math.max(newState, 0);
             }
         }
-    }
+    }*/
 
     public void cacheState() {
         /*

@@ -39,8 +39,8 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
         switch (this.schedStrategy) {
             case FCFS:
             case LCFS:
-            /*case SIRO:
-            case SEPT:
+            case SIRO:
+            /*case SEPT:
             case LEPT:
             case SJF:
             case LJF:*/
@@ -50,6 +50,7 @@ public class Queue extends Station implements HasSchedStrategy, Serializable {
             case INF:
                 this.schedPolicy = SchedStrategyType.NP;
                 this.server = new InfiniteServer(model.getClasses());
+                this.numberOfServers = Integer.MAX_VALUE;
                 break;
             /*case HOL:
                 this.schedPolicy = SchedStrategyType.NP;
