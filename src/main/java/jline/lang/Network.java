@@ -1,6 +1,7 @@
 package jline.lang;
 
 import java.io.*;
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,9 @@ public class Network extends Model implements Serializable {
 
     private List<Node> nodes;
     private List<JobClass> jobClasses;
+    
+    private boolean hasStruct;
+    private NetworkStruct sn;
 
     // caches
     private Map<Node, Map<JobClass, List<Node>>> classLinks;
@@ -33,6 +37,9 @@ public class Network extends Model implements Serializable {
         this.jobClasses = new ArrayList<JobClass>();
 
         this.classLinks = new HashMap<Node, Map<JobClass, List<Node>>>();
+        
+        this.hasStruct = false;
+        this.sn = new NetworkStruct();
     }
 
     public void setDoChecks(boolean doChecks) {
@@ -363,5 +370,140 @@ public class Network extends Model implements Serializable {
             }
         }
         return acc/accCt;
+    }
+
+    public boolean getHasStruct() {
+    	return this.hasStruct;
+    }
+    
+    public void setHasStruct(boolean hasStruct) {
+    	this.hasStruct = hasStruct;
+    }
+    
+    public void setStruct(NetworkStruct sn) {
+    	this.sn = sn;
+    }
+    
+    public NetworkStruct getStruct() {
+    	if (!this.hasStruct)
+    		refreshStruct(true);
+    	
+    	return this.sn;
+    }
+    
+    public void refreshStruct(boolean hardRefresh) {
+    	//Line 7-15 Ignored
+    	
+        NodeType[] nodetypes;
+        String[] classnames;
+        String[] nodenames;
+        int[] refstat;
+    	
+    	if (this.hasStruct && !hardRefresh) {
+    		nodetypes = sn.nodetypes;
+    		classnames = sn.classnames;
+    		nodenames = sn.nodenames;
+    		refstat = sn.refstat;
+    	} else {
+    		nodetypes = getNodeTypes();
+    		classnames = getClassNames();
+    		nodenames = getNodeNames();
+    		refstat = getReferenceStations();
+    		System.out.println();
+    	}
+    }  
+    
+    public NodeType[] getNodeTypes() {
+    	int M = getNumberOfNodes();
+    	NodeType[] nodetypes = new NodeType[M];
+    	
+    	try {
+    		for (int i = 0; i < M; i++) {
+        		Node nodeIter = this.nodes.get(i);
+        		if (nodeIter instanceof Logger) 
+        			nodetypes[i] = NodeType.Logger;
+        		else if (nodeIter instanceof ClassSwitch)
+        			nodetypes[i] = NodeType.ClassSwitch;
+        		else if (nodeIter instanceof Queue)
+        			nodetypes[i] = NodeType.Queue;
+        		else if (nodeIter instanceof Sink)
+        			nodetypes[i] = NodeType.Sink;
+        		else if (nodeIter instanceof Router)
+        			nodetypes[i] = NodeType.Router;
+        		else if (nodeIter instanceof Delay)
+        			nodetypes[i] = NodeType.Delay;
+        		else if (nodeIter instanceof Fork)
+        			nodetypes[i] = NodeType.Fork;
+        		else if (nodeIter instanceof Join)
+        			nodetypes[i] = NodeType.Join;
+        		else if (nodeIter instanceof Source)
+        			nodetypes[i] = NodeType.Source;
+//				Below node types are not supported in JLine
+//        		else if (nodeIter instanceof Place)
+//        			nodetypes[i] = NodeType.Place;
+//        		else if (nodeIter instanceof Transition)
+//        			nodetypes[i] = NodeType.Transition;
+//        		else if (nodeIter instanceof Cache)
+//        			nodetypes[i] = NodeType.Cache;
+        		else
+        			throw new Exception("Unknown node type.");
+        	}
+    	} catch (Exception e){
+    		e.printStackTrace();
+    	}
+    		
+    	return nodetypes;
+    }
+
+    public String[] getClassNames() {
+    	if (hasStruct && sn.classnames != null)
+    		return sn.classnames;
+    	
+    	int K = getNumberOfClasses();
+    	String[] classnames = new String[K];
+    	for (int i = 0; i < K; i++) 
+    		classnames[i] = jobClasses.get(i).getName();
+    	
+    	return classnames;
+    }
+    
+    public String[] getNodeNames() {
+    	if (hasStruct && sn.classnames != null)
+    		return sn.nodenames;
+    	
+    	int M = getNumberOfNodes();
+    	String[] nodenames = new String[M];
+    	for (int i = 0; i < M; i++)
+    		nodenames[i] = nodes.get(i).getName();
+    		
+    	return nodenames;
+    }
+
+    public int[] getReferenceStations() {
+    	int K = getNumberOfClasses();
+    	int[] refstat = new int[K];
+    	
+    	for (int i = 0; i < K; i++) {
+    		if (jobClasses.get(i).type == JobClassType.Open) {
+    			refstat[i] = getIndexSourceNode();
+    		} else {
+    			ClosedClass cc = (ClosedClass) jobClasses.get(i);
+    			refstat[i] = getNodeIndex(cc.getRefstat());
+    		}
+    	}
+
+    	
+    	return refstat;
+    }
+
+    public int getIndexSourceNode() {
+        int res = 0;
+        for (Node nodeIter : this.nodes) {
+        	if (nodeIter instanceof Source)
+        		return res;
+        	res++;
+        }
+
+        return -1;
     }
 }
