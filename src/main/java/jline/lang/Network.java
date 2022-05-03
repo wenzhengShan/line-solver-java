@@ -216,13 +216,13 @@ public class Network extends Model implements Serializable {
         return null;
     }
 
-    public static RoutingMatrix serialRouting(List<JobClass> jobClasses, Node... nodes) {
+    public RoutingMatrix serialRouting(List<JobClass> jobClasses, Node... nodes) {
         if (nodes.length == 0) {
             return new RoutingMatrix();
         }
 
         Network network = nodes[0].model;
-        RoutingMatrix outMatrix = new RoutingMatrix(jobClasses, network.nodes);
+        RoutingMatrix outMatrix = new RoutingMatrix(this, jobClasses, network.nodes);
 
         for (int i = 1; i < nodes.length; i++) {
             //System.out.format("Loading connection %s->%s\n", nodes[i-1].getName(), nodes[i].getName());
@@ -236,19 +236,19 @@ public class Network extends Model implements Serializable {
         return outMatrix;
     }
 
-    public static RoutingMatrix serialRouting(JobClass jobClass, Node... nodes) {
+    public RoutingMatrix serialRouting(JobClass jobClass, Node... nodes) {
         List<JobClass> jobClasses = new ArrayList<JobClass>();
         jobClasses.add(jobClass);
 
-        return Network.serialRouting(jobClasses, nodes);
+        return this.serialRouting(jobClasses, nodes);
     }
 
-    public static RoutingMatrix serialRouting(Node... nodes) {
+    public RoutingMatrix serialRouting(Node... nodes) {
         if (nodes.length == 0) {
             return new RoutingMatrix();
         }
         Network network = nodes[0].model;
-        return Network.serialRouting(network.jobClasses, nodes);
+        return this.serialRouting(network.jobClasses, nodes);
     }
 
     public void link(RoutingMatrix routing) {
@@ -257,7 +257,6 @@ public class Network extends Model implements Serializable {
                 routing: row: source, column: dest
          */
 
-    	sn.connections = routing.getConnections();
         routing.setRouting(this);
     }
 
@@ -419,6 +418,11 @@ public class Network extends Model implements Serializable {
     	boolean[][] connections = sn.connections;
     	double[] njobs = getNumberOfJobs();
     	int[] numservers = getStationServers();
+//    	lldscaling = getLimitedLoadDependence(self);
+//    	cdscaling = getLimitedClassDependence(self);
+    	
+    	NetworkStruct struct = new NetworkStruct();
+    	//rtorig
     }  
     
     public NodeType[] getNodeTypes() {
@@ -535,4 +539,5 @@ public class Network extends Model implements Serializable {
     	
     	return numservers;
     }
+
 }

@@ -155,7 +155,7 @@ class QueueTest {
             queue2.setNumberOfServers(numberOfServers2);
             Sink sink = new Sink (model, "mySink");
 
-            RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(openClass), Arrays.asList(source, queue1, queue2, sink));
+            RoutingMatrix routingMatrix = new RoutingMatrix(model, Arrays.asList(openClass), Arrays.asList(source, queue1, queue2, sink));
             routingMatrix.addConnection(source, queue1);
             routingMatrix.addConnection(source, queue2);
             routingMatrix.addConnection(queue1, sink);
@@ -214,7 +214,7 @@ class QueueTest {
             queue3.setNumberOfServers(numberOfServers3);
             Sink sink = new Sink (model, "mySink");
 
-            RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(openClass), Arrays.asList(source, router, queue1, queue2, queue3, sink));
+            RoutingMatrix routingMatrix = new RoutingMatrix(model, Arrays.asList(openClass), Arrays.asList(source, router, queue1, queue2, queue3, sink));
             routingMatrix.addConnection(source, router);
             routingMatrix.addConnection(router, queue1,openClass,routingRatio1);
             routingMatrix.addConnection(router, queue2,openClass,routingRatio2);

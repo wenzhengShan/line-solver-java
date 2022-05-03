@@ -4,6 +4,7 @@ import jline.solvers.ssa.events.ArrivalEvent;
 import jline.solvers.ssa.events.ClassSwitchArrivalEvent;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jline.lang.*;
@@ -14,7 +15,7 @@ import jline.lang.distributions.*;
 import jline.lang.nodes.*;
 import jline.lang.sections.*;
 
-public class ClassSwitch extends Station implements Serializable {
+public class ClassSwitch extends Node implements Serializable {
     protected SchedStrategyType schedPolicy;
     protected SchedStrategy schedStrategy;
 
@@ -39,6 +40,13 @@ public class ClassSwitch extends Station implements Serializable {
 
     public void setProbRouting(JobClass jobClass, Node destination, double probability) {
         this.setRouting(jobClass, RoutingStrategy.PROB, destination, probability);
+    }
+    
+    public void setCsMatrix(JobClass originClass, JobClass targetClass, double probability) {
+    	Map<JobClass, Double> map = csMatrix.getOrDefault(originClass, new HashMap<JobClass, Double>());
+    	double p = map.getOrDefault(targetClass, 0.0);
+    	map.put(targetClass, p + probability);
+    	this.csMatrix.put(originClass, map);
     }
 
     @Override

@@ -105,7 +105,7 @@ public class GettingStarted {
         Sink sink = new Sink(model, "Sink");
         
         
-        RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(openClass),
+        RoutingMatrix routingMatrix = new RoutingMatrix(model, Arrays.asList(openClass),
                 Arrays.asList(source, queue1, queue2, queue3, sink));
         routingMatrix.addConnection(source, queue1);
         routingMatrix.addConnection(queue1, sink);
@@ -185,7 +185,7 @@ public class GettingStarted {
         Node1.setService(closedClass1, new Exp(1));
         Node2.setService(closedClass1, new Exp(0.6666667));
 
-        RoutingMatrix routingMatrix = new RoutingMatrix(Arrays.asList(closedClass1),
+        RoutingMatrix routingMatrix = new RoutingMatrix(model, Arrays.asList(closedClass1),
                 Arrays.asList(Node1, Node2));
         routingMatrix.addConnection(Node1, Node1, closedClass1,0.7);
         routingMatrix.addConnection(Node1, Node2, closedClass1,0.3);

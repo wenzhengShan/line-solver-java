@@ -11,6 +11,8 @@ public class Station extends StatefulNode implements Serializable {
     protected double cap; // double to allow infinite values.
     protected int stationIndex;
     protected Map<JobClass, Double> classCap;
+    protected double lldScaling;
+    protected double lcdScaling;
 
     protected Map<JobClass, DepartureEvent> departureEvents;
 
@@ -111,5 +113,12 @@ public class Station extends StatefulNode implements Serializable {
 
         return false;
     }
-
+    
+    public void setLimitedLoadDependence(double alpha) {
+    	this.lldScaling = alpha;
+    }
+    
+    public void setLimitedClassDependence(double gamma) {
+    	this.lcdScaling = gamma;
+    }
 }
